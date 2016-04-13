@@ -2,15 +2,18 @@ transformations:
  "M+H":
   n: 1
   g: ['H']
+  v: 1.0
 
  "2M+H":
   n: 2
   g: ['H']
+  v: 0.5
 
 
  "M+2H":
   n: 1
   g: ['H','H']
+  v: 0.5
 
  # "M+NH4":
  #  n: 1
@@ -19,14 +22,17 @@ transformations:
  "M+ACN+H":
   n: 1
   g: ['ACN','H']
+  v: 0.6
 
  "M+K":
   n: 1
   g: ['K']
+  v: 0.6
 
  "M+Na":
   n: 1
   g: ['Na']
+  v: 0.6
 
 
 charges:
@@ -35,9 +41,28 @@ charges:
  NH4: 1
  K: 1
 
-isotopes: [C13,2C13]
+isotopes: 
+ "C13":
+  v: 0.9
+  
+ "2C13":
+  v: 0.9
 
-fragments: [CO,H2O,CH2O2,CO2,NH3]
+fragments:
+ "CO":
+  v: 0.5
+
+ "H2O":
+  v: 0.5
+
+ "CH2O2":
+  v: 0.5
+
+ "CO2":
+  v: 0.5
+
+ "NH3":
+  v: 0.5
 
 
 masses: 
