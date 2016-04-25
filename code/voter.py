@@ -7,6 +7,7 @@ class PeakGroup(object):
         self.members = []
         self.M = 0.0
         self.vote = 0
+        self.rt = 0.0
         
     def add_peak(self,peak,transformation):
         self.members.append((peak,transformation,transformation.transform(peak)))
@@ -15,8 +16,10 @@ class PeakGroup(object):
         toti = 0.0
         for a in self.members:
             self.M += a[0].intensity*a[2]
+            self.rt += a[0].intensity*a[0].rt
             toti += a[0].intensity
         self.M /= toti
+        self.rt /= toti
         
     def __str__(self):
         outstr = ""
