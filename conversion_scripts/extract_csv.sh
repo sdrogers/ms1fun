@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar alignment.jar -d mzmatch.experimental.PeakMLToCsv /Users/simon/Downloads/Beer3_mzXML_mzML_files/NegativeMode/Beer_3_full/ -rtWindow 10
+java -jar alignment.jar -d mzmatch.experimental.PeakMLToCsv /Users/simon/Dropbox/BioResearch/Meta_clustering/ms1fundata/urine/neg/ -rtWindow 10

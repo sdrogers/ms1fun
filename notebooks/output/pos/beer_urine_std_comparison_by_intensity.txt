@@ -1,0 +1,402 @@
+L-Serine (105.042593097,657.6)
+Beer Vote: 1.0, Urine Vote: 3.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	106.0499,656.2400,1.87e+06,M+H (105.0426,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	106.0499,653.8330,1.93e+07,M+H (105.0426,1.0)
+	88.0393,656.3090,6.72e+05,[M-H2O]+H (105.0426,0.5)
+	107.0532,653.8330,6.13e+05,M+H[C13] (105.0426,0.9)
+	128.0318,656.3090,1.45e+05,M+Na (105.0426,0.6)
+
+
+
+
+L-Proline (115.063328539,580.8)
+Beer Vote: 4.34, Urine Vote: 1.9
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	116.0706,577.2680,2.08e+09,M+H (115.0633,1.0)
+	117.0739,577.2680,1.18e+08,M+H[C13] (115.0632,0.9)
+	231.1339,576.0330,3.83e+07,2M+H (115.0633,0.4)
+	138.0526,577.2680,2.00e+07,M+Na (115.0633,0.6)
+	118.0771,577.2680,3.34e+06,M+H[2C13] (115.0631,0.9)
+	139.0559,579.7390,1.17e+06,M+Na[C13] (115.0633,0.54)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	116.0706,576.8650,1.68e+07,M+H (115.0633,1.0)
+	117.0739,574.3960,8.59e+05,M+H[C13] (115.0633,0.9)
+
+
+
+
+Hypoxanthine (136.038510772,514.2)
+Beer Vote: 4.24, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	137.0458,512.3200,6.99e+07,M+H (136.0385,1.0)
+	138.0491,510.9030,3.69e+06,M+H[C13] (136.0385,0.9)
+	159.0277,510.9030,3.26e+06,M+Na (136.0385,0.6)
+	175.0016,512.3200,9.72e+05,M+K (136.0385,0.6)
+	273.0841,512.3200,4.84e+05,2M+H (136.0384,0.4)
+	160.0604,516.0300,4.63e+05,[M-H2O]+ACN+H (136.0371,0.2)
+	160.0311,512.3200,1.96e+05,M+Na[C13] (136.0385,0.54)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	137.0458,511.3100,1.21e+07,M+H (136.0385,1.0)
+
+
+
+
+cytosine (111.043261799,552.6)
+Beer Vote: 2.5, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	112.0506,550.9580,1.98e+07,M+H (111.0433,1.0)
+	134.0325,550.9580,1.08e+06,M+Na (111.0433,0.6)
+	113.0539,550.9580,8.23e+05,M+H[C13] (111.0433,0.9)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	112.0505,552.1350,2.93e+06,M+H (111.0432,1.0)
+
+
+
+
+Creatinine (113.058911863,496.8)
+Beer Vote: 1.9, Urine Vote: 5.44
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	114.0663,493.0370,1.07e+07,M+H (113.0590,1.0)
+	115.0696,493.0370,5.78e+05,M+H[C13] (113.0590,0.9)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	114.0662,495.2540,2.97e+09,M+H (113.0589,1.0)
+	227.1249,495.2540,1.31e+09,2M+H (113.0588,0.4)
+	115.0695,495.2540,1.30e+08,M+H[C13] (113.0588,0.9)
+	138.0549,498.9520,2.27e+07,M+Na[2C13] (113.0590,0.54)
+	136.0481,492.7880,1.13e+07,M+Na (113.0589,0.6)
+	152.0220,496.4860,8.67e+06,M+K (113.0589,0.6)
+	116.0728,495.2540,2.92e+06,M+H[2C13] (113.0588,0.9)
+	86.0712,494.0210,2.28e+06,[M-CO]+H (113.0589,0.5)
+
+
+
+
+O-Acetylcarnitine (203.11575804,520.2)
+Beer Vote: 2.1, Urine Vote: 1.9
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	204.1230,517.2660,2.41e+06,M+H (203.1158,1.0)
+	205.1265,517.2660,3.07e+05,M+H[C13] (203.1158,0.9)
+	193.1547,519.7390,2.57e+05,[M-CO]+NH4 (203.1157,0.2)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	204.1230,516.2600,2.74e+07,M+H (203.1158,1.0)
+	205.1263,517.4940,3.01e+06,M+H[C13] (203.1157,0.9)
+
+
+
+
+L-Lysine (146.105527705,927.6)
+Beer Vote: 1.0, Urine Vote: 4.5
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	147.1127,934.5370,1.30e+06,M+H (146.1054,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	147.1127,933.8760,2.57e+07,M+H (146.1055,1.0)
+	148.1161,933.8760,1.60e+06,M+H[C13] (146.1055,0.9)
+	169.0945,933.8760,7.47e+05,M+Na (146.1053,0.6)
+	129.1022,930.0810,3.11e+05,[M-H2O]+H (146.1055,0.5)
+	149.1170,932.6090,1.00e+05,M+H[2C13] (146.1031,0.9)
+	185.0687,932.6090,6.22e+04,M+K (146.1055,0.6)
+
+
+
+
+trans-4-Hydroxy-L-proline (131.058243161,622.8)
+Beer Vote: 2.1, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	132.0655,619.8340,9.82e+06,M+H (131.0582,1.0)
+	133.0689,618.5940,4.81e+05,M+H[C13] (131.0582,0.9)
+	235.1290,619.8340,1.14e+05,[2M-CO]+H (131.0583,0.2)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	132.0655,619.0670,4.38e+06,M+H (131.0583,1.0)
+
+
+
+
+L-Carnitine (161.105193354,589.8)
+Beer Vote: 1.0, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	162.1124,583.4880,7.12e+06,M+H (161.1052,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	162.1123,583.0760,1.74e+09,M+H (161.1050,1.0)
+
+
+
+
+4-Trimethylammoniobutanoate (145.110278732,583.2)
+Beer Vote: 1.0, Urine Vote: 2.28
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	146.1176,584.7280,9.99e+05,M+H (145.1103,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	160.1332,580.5710,3.61e+08,[M-H2O]+H+CH3OH (145.1103,0.2)
+	146.1175,583.0760,3.52e+07,M+H (145.1102,1.0)
+	161.1365,580.5710,3.21e+07,[M-H2O]+H+CH3OH[C13] (145.1102,0.18)
+	147.1207,580.5710,2.59e+06,M+H[C13] (145.1101,0.9)
+
+
+
+
+L-Cystathionine (222.067427639,671.4)
+Beer Vote: 1.0, Urine Vote: 1.6
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	223.0746,668.8530,5.48e+05,M+H (222.0673,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	223.0747,668.7250,2.27e+06,M+H (222.0674,1.0)
+	245.0567,669.9640,1.34e+05,M+Na (222.0675,0.6)
+
+
+
+
+L-Histidine (155.069476549,622.8)
+Beer Vote: 5.24, Urine Vote: 5.56
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	156.0768,621.0740,1.10e+08,M+H (155.0695,1.0)
+	157.0801,622.3170,7.32e+06,M+H[C13] (155.0695,0.9)
+	178.0587,626.0510,3.47e+06,M+Na (155.0694,0.6)
+	158.0810,619.8340,5.48e+05,M+H[2C13] (155.0670,0.9)
+	179.0620,627.5690,1.84e+05,M+Na[C13] (155.0694,0.54)
+	158.0837,621.0740,1.30e+05,M+H[2C13] (155.0697,0.9)
+	311.1464,619.8340,1.14e+05,2M+H (155.0696,0.4)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	156.0767,619.0670,1.54e+08,M+H (155.0694,1.0)
+	188.1028,619.0670,1.72e+07,M+H+CH3OH (155.0693,0.4)
+	157.0801,619.0670,9.89e+06,M+H[C13] (155.0694,0.9)
+	178.0585,620.3030,2.05e+06,M+Na (155.0693,0.6)
+	189.1062,619.0670,1.30e+06,M+H+CH3OH[C13] (155.0693,0.36)
+	158.0808,620.3030,7.09e+05,M+H[2C13] (155.0669,0.9)
+	138.0661,621.5400,2.11e+05,[M-H2O]+H (155.0694,0.5)
+	158.0837,617.8310,1.49e+05,M+H[2C13] (155.0697,0.9)
+
+
+
+
+4-(beta-Acetylaminoethyl)imidazole (153.090211991,417.0)
+Beer Vote: 1.9, Urine Vote: 1.9
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	154.0974,415.5120,2.38e+06,M+H (153.0901,1.0)
+	155.1007,415.5120,1.97e+05,M+H[C13] (153.0901,0.9)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	154.0974,418.5520,4.59e+06,M+H (153.0901,1.0)
+	155.1008,419.7850,4.64e+05,M+H[C13] (153.0902,0.9)
+
+
+
+
+L-Leucine (131.094628667,520.8)
+Beer Vote: 2.8, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	132.1019,519.7390,2.84e+07,M+H (131.0946,1.0)
+	133.1052,520.9760,2.02e+06,M+H[C13] (131.0946,0.9)
+	134.1062,517.2660,1.79e+05,M+H[2C13] (131.0922,0.9)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	132.1019,522.4700,1.12e+07,M+H (131.0946,1.0)
+
+
+
+
+L-Ornithine (132.08987764,871.2)
+Beer Vote: 4.5, Urine Vote: 3.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	133.0971,873.6050,3.20e+07,M+H (132.0898,1.0)
+	115.0866,873.6050,3.57e+06,[M-H2O]+H (132.0899,0.5)
+	134.1005,873.6050,1.74e+06,M+H[C13] (132.0898,0.9)
+	155.0790,873.6050,6.12e+05,M+Na (132.0897,0.6)
+	135.1014,877.6340,1.89e+05,M+H[2C13] (132.0874,0.9)
+	171.0530,877.6340,9.38e+04,M+K (132.0899,0.6)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	133.0971,875.4200,5.46e+06,M+H (132.0899,1.0)
+	115.0866,875.4200,8.62e+05,[M-H2O]+H (132.0899,0.5)
+	134.1005,871.4630,2.80e+05,M+H[C13] (132.0899,0.9)
+	155.0790,875.4200,1.54e+05,M+Na (132.0898,0.6)
+
+
+
+
+Glycine (75.0320284101,658.8)
+Beer Vote: 1.0, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	76.0393,656.2400,1.05e+06,M+H (75.0320,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	76.0393,656.3090,4.32e+06,M+H (75.0320,1.0)
+
+
+
+
+L-Threonine (119.058243161,619.2)
+Beer Vote: 1.5, Urine Vote: 1.5
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	120.0655,615.8620,5.01e+06,M+H (119.0582,1.0)
+	102.0549,615.8620,5.05e+05,[M-H2O]+H (119.0582,0.5)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	120.0655,615.3420,1.85e+07,M+H (119.0582,1.0)
+	102.0549,614.1060,2.03e+06,[M-H2O]+H (119.0582,0.5)
+
+
+
+
+L-Alanine (89.0476784744,633.6)
+Beer Vote: 1.9, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	90.0550,628.8160,6.76e+06,M+H (89.0477,1.0)
+	91.0583,628.8160,2.64e+05,M+H[C13] (89.0477,0.9)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	90.0549,630.2320,1.00e+07,M+H (89.0477,1.0)
+
+
+
+
+Choline phosphate (183.066044456,615.0)
+Beer Vote: 2.8, Urine Vote: 1.9
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	184.0733,614.6250,2.31e+07,M+H (183.0660,1.0)
+	185.0766,615.8620,1.33e+06,M+H[C13] (183.0660,0.9)
+	186.0773,619.8340,1.88e+05,M+H[2C13] (183.0633,0.9)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	184.0733,609.1280,1.01e+07,M+H (183.0660,1.0)
+	185.0766,605.3990,5.57e+05,M+H[C13] (183.0659,0.9)
+
+
+
+
+L-Glutamine (146.069142198,633.0)
+Beer Vote: 5.55, Urine Vote: 4.55
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	129.0658,630.0640,1.19e+08,[M-H2O]+H (146.0691,0.5)
+	147.0764,628.8160,2.88e+07,M+H (146.0691,1.0)
+	130.0692,630.0640,6.91e+06,[M-H2O]+H[C13] (146.0691,0.45)
+	148.0797,628.8160,1.47e+06,M+H[C13] (146.0691,0.9)
+	169.0583,630.0640,1.06e+06,M+Na (146.0691,0.6)
+	131.0701,632.5570,4.93e+05,[M-H2O]+H[2C13] (146.0667,0.45)
+	151.0478,630.0640,2.43e+05,[M-H2O]+Na (146.0691,0.3)
+	149.0807,630.0640,1.78e+05,M+H[2C13] (146.0667,0.9)
+	131.0724,630.0640,1.29e+05,[M-H2O]+H[2C13] (146.0690,0.45)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	129.0658,632.7420,1.06e+08,[M-H2O]+H (146.0691,0.5)
+	147.0763,630.2320,6.07e+07,M+H (146.0690,1.0)
+	130.0693,633.9790,5.44e+06,[M-H2O]+H[C13] (146.0692,0.45)
+	148.0796,631.4690,3.49e+06,M+H[C13] (146.0690,0.9)
+	169.0582,628.9930,9.51e+05,M+Na (146.0690,0.6)
+	275.1347,630.2320,6.63e+05,[2M-H2O]+H (146.0690,0.2)
+	149.0807,635.2140,3.69e+05,M+H[2C13] (146.0667,0.9)
+
+
+
+
+Adenosine (267.096753932,473.4)
+Beer Vote: 1.0, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	268.1039,470.9430,8.30e+06,M+H (267.0967,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	268.1038,471.7870,2.82e+06,M+H (267.0965,1.0)
+
+
+
+
+L-Aspartate (133.037507719,620.4)
+Beer Vote: 1.0, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	134.0447,614.6250,1.11e+06,M+H (133.0374,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	134.0447,615.3420,1.36e+06,M+H (133.0374,1.0)
+
+
+
+
+L-Arginine (174.111675715,996.0)
+Beer Vote: 2.5, Urine Vote: 3.8
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	175.1189,1002.6700,4.26e+07,M+H (174.1116,1.0)
+	176.1222,1003.9500,2.69e+06,M+H[C13] (174.1116,0.9)
+	197.1009,1002.6700,2.24e+05,M+Na (174.1117,0.6)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	175.1189,998.0150,3.39e+07,M+H (174.1116,1.0)
+	176.1222,998.0150,2.06e+06,M+H[C13] (174.1116,0.9)
+	197.1009,1001.8800,1.81e+05,M+Na (174.1116,0.6)
+	177.1227,998.0150,1.48e+05,M+H[2C13] (174.1087,0.9)
+	349.2306,1000.5700,1.19e+05,2M+H (174.1117,0.4)
+
+
+
+
+L-Phenylalanine (165.078978603,499.8)
+Beer Vote: 1.0, Urine Vote: 1.0
+BEER
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	166.0863,500.4830,1.60e+07,M+H (165.0790,1.0)
+
+URINE
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	166.0863,502.6690,1.30e+07,M+H (165.0790,1.0)
+
+
+
+

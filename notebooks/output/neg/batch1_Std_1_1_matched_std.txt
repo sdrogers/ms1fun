@@ -1,0 +1,17 @@
+Imidazole-4-acetate (126.042927448,532.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	125.0346,535.9127,1.80e+05,M-H (126.0418,1.0)
+
+Pyridoxine (169.073893225,435.6) (vote=3.35)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	168.0657,430.4869,1.74e+06,M-H (169.0730,1.0)
+	169.0690,431.7087,1.62e+05,M-H[C13] (169.0729,0.9)
+	140.0707,429.2658,7.36e+05,[M-CO]-H (169.0728,0.5)
+	124.0757,428.0440,2.82e+05,[M-CO2]-H (169.0728,0.5)
+	141.0741,430.4869,7.24e+04,[M-CO]-H[C13] (169.0730,0.45)
+
+L-Valine (117.078978603,570.6) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	116.0706,576.5597,1.56e+07,M-H (117.0778,1.0)
+	117.0739,575.3185,8.49e+05,M-H[C13] (117.0779,0.9)
+

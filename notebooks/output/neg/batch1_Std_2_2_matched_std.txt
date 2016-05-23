@@ -1,0 +1,9 @@
+Pantothenate (219.110672662,442.8) (vote=1.5)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	218.1023,444.8860,3.26e+05,M-H (219.1095,1.0)
+	190.1074,443.6675,3.40e+05,[M-CO]-H (219.1096,0.5)
+
+L-Phenylalanine (165.078978603,499.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	164.0708,502.0249,2.78e+04,M-H (165.0781,1.0)
+
