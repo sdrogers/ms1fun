@@ -7,6 +7,7 @@ from scipy.stats import beta
 
 PROTON = 1.00727645199076
 
+
 class Signal(object):
     def __init__(self,x,y):
         self.x = x
