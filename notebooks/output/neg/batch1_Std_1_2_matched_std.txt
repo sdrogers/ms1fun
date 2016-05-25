@@ -1,3 +1,7 @@
+D-Glucosamine (179.079372534,642.6) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	178.0710,637.3919,6.31e+03,M-H (179.0783,1.0)
+
 Pyridoxine (169.073893225,435.6) (vote=3.4)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	168.0655,428.8585,1.40e+06,M-H (169.0728,1.0)
@@ -9,10 +13,6 @@ Pyridoxine (169.073893225,435.6) (vote=3.4)
 L-Threonine (119.058243161,619.2) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	118.0499,616.2595,2.04e+04,M-H (119.0572,1.0)
-
-D-Glucosamine (179.079372534,642.6) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	178.0710,637.3919,6.31e+03,M-H (179.0783,1.0)
 
 Imidazole-4-acetate (126.042927448,532.2) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)

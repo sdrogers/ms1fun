@@ -1,8 +1,3 @@
-vote: 1.1, M: 41.0264862466
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	81.0457,528.0330,1.98e+05,M+ACN-H (41.0265,0.6)
-	81.0457,528.0330,1.98e+05,2M-H (41.0265,0.5)
-
 vote: 1.1, M: 64.0419667019
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	109.0407,514.4090,2.15e+05,M+CH2O2-H (64.0425,0.6)
@@ -169,6 +164,10 @@ vote: 1.1, M: 82.0055250141
 vote: 1.0, M: 82.0417867305
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	81.0345,460.0070,7.51e+04,M-H (82.0418,1.0)
+
+vote: 1.0, M: 82.0530143966
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	81.0457,528.0330,1.98e+05,M-H (82.0530,1.0)
 
 vote: 1.0, M: 83.0370712569
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -20163,12 +20162,9 @@ vote: 1.0, M: 478.110493204
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	477.1032,231.7600,1.11e+05,M-H (478.1105,1.0)
 
-vote: 2.47, M: 478.224594664
+vote: 1.0, M: 478.221168772
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	477.2139,282.1080,1.03e+06,M-H (478.2212,1.0)
-	479.2293,284.5750,7.29e+06,M-H[2C13] (478.2298,0.9)
-	479.2293,284.5750,7.29e+06,[M-CO2]+CH2O2-H (478.2209,0.3)
-	480.2327,280.8720,2.06e+06,[M-CO2]+CH2O2-H[C13] (478.2210,0.27)
 
 vote: 2.7, M: 478.244563149
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -20198,6 +20194,11 @@ vote: 1.0, M: 479.146288888
 vote: 1.0, M: 479.733681201
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	478.7264,1320.7700,1.63e+05,M-H (479.7337,1.0)
+
+vote: 1.9, M: 480.236548914
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	479.2293,284.5750,7.29e+06,M-H (480.2365,1.0)
+	480.2327,280.8720,2.06e+06,M-H[C13] (480.2366,0.9)
 
 vote: 1.0, M: 481.110819008
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -20232,11 +20233,10 @@ vote: 1.0, M: 483.076230667
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	482.0690,245.9580,5.23e+06,M-H (483.0762,1.0)
 
-vote: 2.5, M: 484.120644962
+vote: 2.2, M: 484.122216772
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	483.1100,223.8360,7.47e+04,M-H (484.1173,1.0)
 	485.1260,223.8360,2.09e+05,M-H[2C13] (484.1266,0.9)
-	485.1260,223.8360,2.09e+05,[M-CO2]+CH2O2-H (484.1177,0.3)
 	480.1467,225.0810,1.12e+05,[M-CO2]+ACN-H (484.1173,0.3)
 
 vote: 1.25, M: 484.253278251
@@ -20387,11 +20387,10 @@ vote: 1.0, M: 505.164780634
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	504.1575,566.3370,1.76e+05,M-H (505.1648,1.0)
 
-vote: 2.2, M: 507.12740736
+vote: 1.9, M: 507.12847805
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	506.1170,487.2200,3.67e+05,M-H (507.1243,1.0)
 	508.1333,485.9850,2.82e+05,M-H[2C13] (507.1339,0.9)
-	508.1333,485.9850,2.82e+05,[M-CO2]+CH2O2-H (507.1249,0.3)
 
 vote: 1.0, M: 507.159336807
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -20448,11 +20447,10 @@ vote: 1.0, M: 512.226488768
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	511.2192,240.9620,8.32e+05,M-H (512.2265,1.0)
 
-vote: 2.2, M: 513.088582408
+vote: 1.9, M: 513.088956974
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	512.0795,252.1890,2.32e+06,M-H (513.0868,1.0)
 	514.0954,248.4290,7.18e+05,M-H[2C13] (513.0959,0.9)
-	514.0954,248.4290,7.18e+05,[M-CO2]+CH2O2-H (513.0870,0.3)
 
 vote: 2.4, M: 513.276814014
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -20664,13 +20662,11 @@ vote: 1.0, M: 539.736532745
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	538.7293,3.7007,2.14e+05,M-H (539.7365,1.0)
 
-vote: 3.62, M: 540.260826606
+vote: 3.05, M: 540.262344292
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	539.2509,284.5750,2.08e+07,M-H (540.2582,1.0)
 	541.2667,285.8080,2.47e+07,M-H[2C13] (540.2672,0.9)
 	540.2541,284.5750,6.07e+06,M-H[C13] (540.2580,0.9)
-	541.2667,285.8080,2.47e+07,[M-CO2]+CH2O2-H (540.2583,0.3)
-	542.2700,285.8080,7.38e+06,[M-CO2]+CH2O2-H[C13] (540.2583,0.27)
 	255.1243,285.8080,1.94e+06,[M-CO]-H-H (540.2581,0.25)
 
 vote: 1.0, M: 541.73482132
@@ -20684,6 +20680,10 @@ vote: 1.0, M: 542.273914098
 vote: 1.0, M: 542.273930907
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	541.2667,409.3030,1.58e+07,M-H (542.2739,1.0)
+
+vote: 1.0, M: 543.277315935
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	542.2700,285.8080,7.38e+06,M-H (543.2773,1.0)
 
 vote: 1.0, M: 544.289285891
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -20918,12 +20918,11 @@ vote: 1.0, M: 613.650429277
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	612.6432,16.7852,4.40e+05,M-H (613.6504,1.0)
 
-vote: 3.575, M: 613.803539953
+vote: 3.275, M: 613.803816122
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	612.7980,1259.2000,1.24e+06,M-H (613.8053,1.0)
 	613.8012,1257.9600,1.10e+05,M-H[C13] (613.8051,0.9)
 	614.8022,1257.9600,5.75e+04,M-H[2C13] (613.8027,0.9)
-	614.8022,1257.9600,5.75e+04,[M-CO2]+CH2O2-H (613.7938,0.3)
 	291.8956,1260.4500,5.56e+05,[M-CO]-H-H (613.8008,0.25)
 	292.3974,1256.5200,6.51e+04,[M-CO]-H-H[C13] (613.8010,0.225)
 
@@ -20952,12 +20951,11 @@ vote: 1.0, M: 630.792466091
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	629.7852,1252.7800,5.27e+04,M-H (630.7925,1.0)
 
-vote: 3.1, M: 633.212624329
+vote: 2.8, M: 633.213126892
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	632.2059,579.9550,2.99e+06,M-H (633.2132,1.0)
 	633.2093,579.9550,7.12e+05,M-H[C13] (633.2132,0.9)
 	634.2108,573.7800,1.91e+05,M-H[2C13] (633.2113,0.9)
-	634.2108,573.7800,1.91e+05,[M-CO2]+CH2O2-H (633.2024,0.3)
 
 vote: 1.0, M: 633.801151178
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)

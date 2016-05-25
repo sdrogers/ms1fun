@@ -69,26 +69,41 @@ class Voter(object):
                 
                 tran_ind = [i]
                 temp_tran = [actual_transforms[i]]
+                found_peaks = [original_peaks[i]]
                 while True:
                     pos += 1
                     if pos >= len(transformed_masses):
                         break
                     if transformed_masses[pos]<=up:
-                        tran_ind.append(pos)
-                        temp_tran.append(actual_transforms[pos])
+                        if not original_peaks[pos] in found_peaks:
+                            tran_ind.append(pos)
+                            temp_tran.append(actual_transforms[pos])
+                            found_peaks.append(original_peaks[pos])
+                        else:
+                            already = found_peaks.index(original_peaks[pos])
+                            if temp_tran[already].vote < actual_transforms[pos].vote:
+                                # replace the original one with this one if it has a higher vote
+                                tran_ind[already] = pos
+                                temp_tran[already] = actual_transforms[pos]
                     else:
                         break
 
-                to_remove = []
-                for k,j in enumerate(tran_ind):
-                    if not actual_transforms[j].parent == None:
-                        if actual_transforms[j].parent in temp_tran:
-                            pass
-                        else:
-                            to_remove.append(k)
-                to_remove = sorted(to_remove,reverse=True)
-                for j in to_remove:
-                    tran_ind.pop(j)
+                # This loop should enable second order dependencies
+                finished = False
+                while not finished:
+                    to_remove = []
+                    for k,j in enumerate(tran_ind):
+                        if not actual_transforms[j].parent == None:
+                            if actual_transforms[j].parent in temp_tran:
+                                pass
+                            else:
+                                to_remove.append(k)
+                    if len(to_remove) == 0:
+                        finished = True
+                    to_remove = sorted(to_remove,reverse=True)
+                    for j in to_remove:
+                        tran_ind.pop(j)
+
                 total_vote = 0.0
                 for k,j in enumerate(tran_ind):
                     total_vote += actual_transforms[j].vote
