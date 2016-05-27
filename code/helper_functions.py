@@ -175,7 +175,7 @@ def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.ar
 	# Make permuatation plot
 	# i.e. of all the peaks in non-singleton groups, if we randomly selected
 	# M from them, what would we get
-	perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits)
+	perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits,outpre)
 
 
 def make_thresh_plots(vh,v_thresh,outpre):
