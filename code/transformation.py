@@ -15,8 +15,10 @@ class Transformation(object):
 
 	def transform(self,peak):
 		M = peak.mass*abs(self.charge) + self.fragment_mass + self.charge*ELECTRON_MASS - self.adduct_mass
-		M /= (1.0*self.multiplicity)
+		# M /= (1.0*self.multiplicity)
+		# M -= self.isotope_diff
 		M -= self.isotope_diff
+		M /= (1.0*self.multiplicity)
 		return M
 
 	def reversetransform(self,M):
@@ -82,24 +84,74 @@ def load_from_file(file_name):
 
 		
 	final_transformations = []
-	if 'isotopes' in all_vals:
-		for t in transformations:
-			final_transformations.append(t)
-			for i in all_vals['isotopes']:
-				new_name = t.name + '[{}]'.format(i)
-				isotope_diff = all_vals['masses'][i]
-				iso_vote = all_vals['isotopes'][i]['v']
-				final_transformations.append(Transformation(new_name,t.adduct_mass,charge=t.charge,
-															multiplicity = t.multiplicity,
-															isotope_diff = isotope_diff,
-															fragment_mass = t.fragment_mass,
-															parent = t,
-															vote = t.vote*iso_vote,
-															adducts = t.adducts,
-															fragments = t.fragments))
+	# if 'isotopes' in all_vals:
+	# 	for t in transformations:
+	# 		final_transformations.append(t)
+	# 		for i in all_vals['isotopes']:
+	# 			new_name = t.name + '[{}]'.format(i)
+	# 			isotope_diff = all_vals['masses'][i]
+	# 			iso_vote = all_vals['isotopes'][i]['v']
+	# 			final_transformations.append(Transformation(new_name,t.adduct_mass,charge=t.charge,
+	# 														multiplicity = t.multiplicity,
+	# 														isotope_diff = isotope_diff,
+	# 														fragment_mass = t.fragment_mass,
+	# 														parent = t,
+	# 														vote = t.vote*iso_vote,
+	# 														adducts = t.adducts,
+	# 														fragments = t.fragments))
+	for t in transformations:
+		final_transformations.append(t)
+		iso_vote = 0.9 # fairly random choice!
+		c13_diff = 1.0033548378
+		new_name = t.name + '[C13]'
+		c13 = Transformation(new_name,t.adduct_mass,charge=t.charge,
+			multiplicity = t.multiplicity,
+			isotope_diff = c13_diff,
+			fragment_mass = t.fragment_mass,
+			parent = t,
+			vote = t.vote*iso_vote,
+			adducts = t.adducts,
+			fragments=t.fragments)
+		final_transformations.append(c13)
+		new_name = t.name + '[2C13]'
+		c13_2 = Transformation(new_name,t.adduct_mass,charge=t.charge,
+			multiplicity = t.multiplicity,
+			isotope_diff = 2*c13_diff,
+			fragment_mass = t.fragment_mass,
+			parent = c13,
+			vote = c13.vote*iso_vote,
+			adducts = t.adducts,
+			fragments=t.fragments)
 
-	else:
-		final_transformations = transformations
+		final_transformations.append(c13_2)
+
+		if t.multiplicity > 1:
+			# add two more!
+			new_name = t.name + '[3C13]'
+			c13_3 = Transformation(new_name,t.adduct_mass,charge=t.charge,
+			multiplicity = t.multiplicity,
+			isotope_diff = 3*c13_diff,
+			fragment_mass = t.fragment_mass,
+			parent = c13_2,
+			vote = c13.vote*iso_vote,
+			adducts = t.adducts,
+			fragments=t.fragments)
+			final_transformations.append(c13_3)
+
+			new_name = t.name + '[4C13]'
+			c13_4 = Transformation(new_name,t.adduct_mass,charge=t.charge,
+			multiplicity = t.multiplicity,
+			isotope_diff = 3*c13_diff,
+			fragment_mass = t.fragment_mass,
+			parent = c13_3,
+			vote = c13.vote*iso_vote,
+			adducts = t.adducts,
+			fragments=t.fragments)
+			final_transformations.append(c13_4)
+
+
+	# else:
+	# 	final_transformations = transformations
 
 	# print transformations
 	return final_transformations
