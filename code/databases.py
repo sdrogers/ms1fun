@@ -115,3 +115,11 @@ class Standards(object):
 	    else:
 	        return False
 
+	def get_hits(self,mass,rt,mtol=10,rttol=10):
+		hits = []
+		for mol in self.mols:
+			if self.hit(mass,mol.mass,rt,mol.rt,mtol = mtol,rttol = rttol):
+				hits.append(mol)
+		return hits
+
+

@@ -1,6 +1,11 @@
 
 import pylab as plt
 import numpy as np
+import copy
+from random import shuffle
+
+PROTON = 1.00727645199076
+
 
 def collect_group_stats(groups,thresh = 1e5):
 	n_peaks = 0
@@ -61,4 +66,176 @@ def collect_group_stats(groups,thresh = 1e5):
 	print "Test between maximum group intensity and vote: corr coef = {}, p-value = {}".format(r,p)
 	plt.xlabel('Log maximum group intensity')
 	plt.ylabel('Vote of group')
+
+
+def standard_analysis(groups,mtol=10,rttol=10,mode='pos',filename='blah',v_thresh = np.arange(1.0,7.0,0.5)):
+	outpre = 'output/' + mode + '/' + filename
+	from databases import Standards
+	st = Standards()
+	group_hits = 0
+	raw_hits = 0
+	if mode == 'pos':
+		mu = -PROTON
+	else:
+		mu = PROTON
+
+	vh = []
+	ns_group_peak_hits = []
+
+	ns_groups = 0
+	ns_group_hits = 0
+
+	n_peaks = 0
+
+	for group in groups:
+		if len(group.members) > 1:
+			ns_groups += 1
+
+		for p,_,_ in group.members:
+			n_peaks += 1
+			hits = st.get_hits(p.mass + mu,p.rt,mtol=mtol,rttol=rttol)
+			if len(hits) > 0:
+				raw_hits += 1
+			if len(group.members) > 1:
+				if len(hits) > 0:
+					ns_group_peak_hits.append(1)
+				else:
+					ns_group_peak_hits.append(0)
+
+		hits = st.get_hits(group.M,group.rt,mtol=mtol,rttol=rttol)
+		if len(hits) > 0:
+			h = 1
+			group_hits += 1
+			if len(group.members) > 1:
+				ns_group_hits += 1
+		else:
+			h = 0
+		vh.append((group.vote,h))
+
+	print "Number of raw hits (i.e. comparing all peaks): {} ({:.0f}% of peaks)".format(raw_hits,100.0*raw_hits/n_peaks)
+	print "Number of group hits (i.e. hits on group Ms): {} ({:.0f}% of groups)".format(group_hits,100.0*group_hits/len(groups))
+
+	make_thresh_plots(vh,v_thresh,outpre)
+	perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits,outpre)
+
+
+def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.arange(1.0,7.0,0.5)):
+
+	outpre = 'output/' + mode + '/' + filename
+
+	from databases import HMDB
+	hmdb = HMDB()
+	# Find the hits across all peaks at mtol
+	group_hits = 0
+	raw_hits = 0
+	if mode == 'pos':
+		mu = -PROTON
+	else:
+		mu = PROTON
+
+	vh = []
+	ns_group_peak_hits = []
+
+	ns_groups = 0
+	ns_group_hits = 0
+
+	n_peaks = 0
+
+	for group in groups:
+		if len(group.members) > 1:
+			ns_groups += 1
+
+		for p,_,_ in group.members:
+			n_peaks += 1
+			hits = hmdb.get_hits(p.mass + mu,tol=mtol)
+			if len(hits) > 0:
+				raw_hits += 1
+			if len(group.members) > 1:
+				if len(hits) > 0:
+					ns_group_peak_hits.append(1)
+				else:
+					ns_group_peak_hits.append(0)
+
+		hits = hmdb.get_hits(group.M,tol=mtol)
+		if len(hits) > 0:
+			h = 1
+			group_hits += 1
+			if len(group.members) > 1:
+				ns_group_hits += 1
+		else:
+			h = 0
+		vh.append((group.vote,h))
+
+
+	print "Number of raw hits (i.e. comparing all peaks): {} ({:.0f}% of peaks)".format(raw_hits,100.0*raw_hits/n_peaks)
+	print "Number of group hits (i.e. hits on group Ms): {} ({:.0f}% of groups)".format(group_hits,100.0*group_hits/len(groups))
+
+
+	make_thresh_plots(vh,v_thresh,outpre)
+	# Make permuatation plot
+	# i.e. of all the peaks in non-singleton groups, if we randomly selected
+	# M from them, what would we get
+	perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits)
+
+
+def make_thresh_plots(vh,v_thresh,outpre):
+	# make the threshold v hits plot
+	overs = []
+	unders = []
+	sizes = []
+	for vth in v_thresh:
+	    over = []
+	    under = []
+	    for v,h in vh:
+	        if v > vth:
+	            over.append(h)
+	        else:
+	            under.append(h)
+
+	    over = np.array(over)
+	    if len(over) == 0:
+	    	overs.append(0)
+	    else:
+	    	overs.append(over.mean())
+	    under = np.array(under)
+	    unders.append(under.mean())
+	    sizes.append(len(over))
+
+	overs = np.array(overs)
+	unders = np.array(unders)
+	
+	plt.figure(figsize=(10,10))
+	plo = []
+	overplot, = plt.plot(v_thresh,overs,label='Prop over thresh with hits')
+	underplot, = plt.plot(v_thresh,unders,label='Prop under thresh with hits')
+	plt.xlabel('Vote threshold')
+	plt.ylabel('Proportion of groups')
+	plt.grid()
+	plt.legend(handles=[overplot,underplot])
+	plt.title('Proportion of groups with hits above and below (or equal to) vote threshold')
+	plt.savefig(outpre + '_thresh_hits.png',dpi=100)
+	plt.figure()
+	plt.plot(v_thresh,sizes)
+	plt.xlabel('Vote threshold')
+	plt.ylabel('Number of groups')
+	plt.title('Proportion of groups above vote threshold')
+	plt.savefig(outpre + '_thresh_groups.png',dpi=100)
+
+
+def perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits,outpre):
+	counts = []
+	ns_copy = copy.deepcopy(ns_group_peak_hits)
+	for i in range(10000):
+		shuffle(ns_copy)
+		counts.append(sum(ns_copy[:ns_groups]))
+
+	plt.figure()
+	plt.hist(counts)
+	_,ymax = plt.ylim()
+
+	plt.plot([ns_group_hits,ns_group_hits],[0,ymax],'r',linewidth=2)
+	plt.ylabel('count')
+	plt.xlabel('number of hits')
+	plt.title('True number of hits in non-singleton groups, versus randomly chosen')
+	plt.savefig(outpre + '_permute.png',dpi=100)
 
