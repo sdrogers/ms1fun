@@ -1,33 +1,33 @@
-L-Carnitine (161.105193354,589.8) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	160.0969,600.2114,2.51e+05,M-H (161.1042,1.0)
-
-L-Proline (115.063328539,580.8) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	114.0551,596.3753,3.96e+04,M-H (115.0624,1.0)
-
-4-Trimethylammoniobutanoate (145.110278732,583.2) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	144.1020,535.6260,9.46e+04,M-H (145.1092,1.0)
-
-thymine (126.042927448,421.8) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	125.0364,442.4489,8.41e+04,M-H (126.0437,1.0)
-
 Pantothenate (219.110672662,442.8) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	218.1023,398.7032,1.54e+05,M-H (219.1096,1.0)
 
-6-Methylaminopurine (149.070145251,438.0) (vote=1.3)
+L-Phenylalanine (165.078978603,499.8) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	148.0605,483.6713,2.19e+05,M-H (149.0678,1.0)
-	150.0776,483.6713,3.74e+05,[M-CO2]+CH2O2-H (149.0692,0.3)
+	164.0708,502.0249,2.78e+04,M-H (165.0781,1.0)
 
 O-Acetylcarnitine (203.11575804,520.2) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	202.1075,536.8695,5.93e+04,M-H (203.1148,1.0)
 
-L-Phenylalanine (165.078978603,499.8) (vote=1.0)
+4-Trimethylammoniobutanoate (145.110278732,583.2) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	164.0708,502.0249,2.78e+04,M-H (165.0781,1.0)
+	144.1020,535.6260,9.46e+04,M-H (145.1092,1.0)
+
+L-Carnitine (161.105193354,589.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	160.0969,600.2114,2.51e+05,M-H (161.1042,1.0)
+
+thymine (126.042927448,421.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	125.0364,442.4489,8.41e+04,M-H (126.0437,1.0)
+
+L-Proline (115.063328539,580.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	114.0551,596.3753,3.96e+04,M-H (115.0624,1.0)
+
+6-Methylaminopurine (149.070145251,438.0) (vote=1.3)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	148.0605,483.6713,2.19e+05,M-H (149.0678,1.0)
+	150.0776,483.6713,3.74e+05,[M-CO2]+CH2O2-H (149.0692,0.3)
 
