@@ -64,17 +64,21 @@ class BetaLike(object):
 
 
 class CorrCluster(object):
-    def __init__(self,like_object,peak_file,corr_file,signal_file = None,algo='greedy',alpha=1,greedy_thresh=0.8,correct=False):
+    def __init__(self,like_object,peak_file,corr_file=None,signal_file = None,algo='greedy',alpha=1,greedy_thresh=0.8,correct=False,file_type='peakml.csv',rt_thresh=3):
         self.like_object = like_object
-        self.load_peaks(peak_file,signal_file,correct=correct)
-        self.create_adjacency(corr_file)
+        self.load_peaks(peak_file,signal_file,file_type,correct=correct)
+        if corr_file:
+            self.create_adjacency(corr_file,rt_thresh=rt_thresh)
+        else:
+            self.create_adjacency()
         self.alpha = alpha
         self.N = len(self.peaks)
         # self.base_like()
         # self.init_clusterer()
 
         if algo=='greedy':
-            self.greedy(thresh=greedy_thresh)
+            # Note that default has changed to just using rt and not correlation
+            self.greedy(thresh=greedy_thresh,data_type='rt',rt_thresh=rt_thresh)
         else:
             self.base_like()
             self.init_clusterer()
@@ -82,38 +86,52 @@ class CorrCluster(object):
 
 
 
-    def load_peaks(self,peak_file,signal_file,correct=False):
+    def load_peaks(self,peak_file,signal_file,file_type,correct=False):
 
         self.peaks = []
-        if os.path.isfile(peak_file):
-            with open(peak_file) as f:
-                heads = f.readline()
-                for line in f:
-                    split_line = line.split(',')
-                    pid = int(split_line[0])
-                    mass = float(split_line[1])
-                    rt = float(split_line[2])
-                    intensity = float(split_line[3])
-                    self.peaks.append(Peak(pid,mass,rt,intensity,correct=correct))
 
-        peak_pos = 0
-        if not signal_file is None:
-            with open(signal_file) as f:
-                for line in f:
-                    signal = line.split(',')[-1].strip()
-                    sis = signal.split(' ')
-                    x = []
-                    y = []
-                    for si in sis:
-                        try:
-                            x.append(float(si.split(':')[0]))
-                            y.append(float(si.split(':')[1]))
-                        except:
-                            print si
+        if file_type == 'peakml.csv':
+            if os.path.isfile(peak_file):
+                with open(peak_file) as f:
+                    heads = f.readline()
+                    for line in f:
+                        split_line = line.split(',')
+                        pid = int(split_line[0])
+                        mass = float(split_line[1])
+                        rt = float(split_line[2])
+                        intensity = float(split_line[3])
+                        self.peaks.append(Peak(pid,mass,rt,intensity,correct=correct))
 
-                    self.peaks[peak_pos].signal = Signal(x,y)
-                    peak_pos += 1
-                
+            peak_pos = 0
+            if not signal_file is None:
+                with open(signal_file) as f:
+                    for line in f:
+                        signal = line.split(',')[-1].strip()
+                        sis = signal.split(' ')
+                        x = []
+                        y = []
+                        for si in sis:
+                            try:
+                                x.append(float(si.split(':')[0]))
+                                y.append(float(si.split(':')[1]))
+                            except:
+                                print si
+
+                        self.peaks[peak_pos].signal = Signal(x,y)
+                        peak_pos += 1
+                    
+        else: # it's a direct xml file
+            if os.path.isfile(peak_file):
+                with open(peak_file) as f:
+                    heads=f.readline()
+                    for line in f:
+                        split_line = line.split(',')
+                        pid = int(split_line[0])
+                        mass = float(split_line[1])
+                        rt = float(split_line[2])
+                        intensity = float(split_line[3])
+                        self.peaks.append(Peak(pid,mass,rt,intensity,correct=correct))
+
         print "Loaded {} peaks".format(len(self.peaks))
 
     def create_adjacency(self,corr_file):
@@ -133,6 +151,37 @@ class CorrCluster(object):
                 elif v==0:
                     v = 0.01
                 self.adjacency[self.peaks[i]][self.peaks[j]] = v
+
+    def create_adjacency(self,rt_thresh=3):
+        # If just using RT
+        self.adjacency = {}
+        for p in self.peaks:
+            self.adjacency[p] = {}
+
+        sorted_peaks = sorted(self.peaks,key = lambda x:x.rt)
+        for i,p in enumerate(sorted_peaks):
+            # go backwards until we hit the threshold
+            back_finished = False
+            j = i
+            while not back_finished:
+                j -= 1
+                if j < 0:
+                    break
+                if abs(sorted_peaks[j].rt - p.rt) > rt_thresh:
+                    break
+                self.adjacency[p][sorted_peaks[j]] = 1.0
+            forward_finished = False
+            j = i
+            while not forward_finished:
+                j += 1
+                if j == len(sorted_peaks):
+                    break
+                if abs(sorted_peaks[j].rt - p.rt) > rt_thresh:
+                    break
+                self.adjacency[p][sorted_peaks[j]] = 1.0
+            
+
+
 
     class Cluster(object):
         def __init__(self):
@@ -276,7 +325,7 @@ class CorrCluster(object):
         return ordered_peaks,order
 
 
-    def greedy(self,thresh=0.8):
+    def greedy(self,thresh=0.8,data_type='correlation',rt_thresh=3):
         # do a greedy clustering
         self.clusters = []
         sorted_peaks = sorted(self.peaks,key=lambda x: x.intensity,reverse=True)
@@ -294,11 +343,19 @@ class CorrCluster(object):
             sorted_peaks.remove(p)
             for q in self.adjacency[p]:
                 if q in sorted_peaks:
-                    if self.adjacency[p][q]>=thresh:
-                        sorted_peaks.remove(q)
-                        new_cluster.members.append(q)
-                        self.Z[q] = new_cluster
-                        new_cluster.size += 1
+                    if data_type == 'correlation':
+                        if self.adjacency[p][q]>=thresh:
+                            sorted_peaks.remove(q)
+                            new_cluster.members.append(q)
+                            self.Z[q] = new_cluster
+                            new_cluster.size += 1
+                    else:
+                        if abs(p.rt - q.rt) < rt_thresh:
+                            sorted_peaks.remove(q)
+                            new_cluster.members.append(q)
+                            self.Z[q] = new_cluster
+                            new_cluster.size += 1
+
             self.clusters.append(new_cluster)
 
         
