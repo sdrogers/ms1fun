@@ -64,13 +64,13 @@ class BetaLike(object):
 
 
 class CorrCluster(object):
-    def __init__(self,like_object,peak_file,corr_file=None,signal_file = None,algo='greedy',alpha=1,greedy_thresh=0.8,correct=False,file_type='peakml.csv',rt_thresh=3):
+    def __init__(self,like_object,peak_file,corr_file=None,signal_file = None,algo='greedy',alpha=1,greedy_thresh=0.8,correct=False,file_type='peakml.csv',rt_thresh=3,data_type='correlation'):
         self.like_object = like_object
         self.load_peaks(peak_file,signal_file,file_type,correct=correct)
-        if corr_file:
-            self.create_adjacency(corr_file,rt_thresh=rt_thresh)
+        if not corr_file == None:
+            self.create_adjacency(corr_file)
         else:
-            self.create_adjacency()
+            self.create_adjacency_rt(rt_thresh=rt_thresh)
         self.alpha = alpha
         self.N = len(self.peaks)
         # self.base_like()
@@ -78,7 +78,7 @@ class CorrCluster(object):
 
         if algo=='greedy':
             # Note that default has changed to just using rt and not correlation
-            self.greedy(thresh=greedy_thresh,data_type='rt',rt_thresh=rt_thresh)
+            self.greedy(thresh=greedy_thresh,data_type=data_type,rt_thresh=rt_thresh)
         else:
             self.base_like()
             self.init_clusterer()
@@ -152,7 +152,7 @@ class CorrCluster(object):
                     v = 0.01
                 self.adjacency[self.peaks[i]][self.peaks[j]] = v
 
-    def create_adjacency(self,rt_thresh=3):
+    def create_adjacency_rt(self,rt_thresh=3):
         # If just using RT
         self.adjacency = {}
         for p in self.peaks:
