@@ -1,7 +1,7 @@
 ELECTRON_MASS = 0.00054857990924
 
 class Transformation(object):
-	def __init__(self,name,adduct_mass,charge = 1,multiplicity = 1,fragment_mass = 0,isotope_diff = 0,parent = None,vote = 1.0,adducts = [],fragments = []):
+	def __init__(self,name,adduct_mass,charge = 1,multiplicity = 1,fragment_mass = 0,isotope_diff = 0,parent = None,vote = 1.0,adducts = [],fragments = [],charges = []):
 		self.name = name
 		self.adduct_mass = adduct_mass
 		self.charge = charge
@@ -12,6 +12,7 @@ class Transformation(object):
 		self.vote = vote
 		self.fragments = fragments
 		self.adducts = adducts
+		self.charges = charges
 
 	def transform(self,peak):
 		M = peak.mass*abs(self.charge) + self.fragment_mass + self.charge*ELECTRON_MASS - self.adduct_mass
@@ -41,46 +42,80 @@ def load_from_file(file_name):
 	transformations = []
 	all_vals = yaml.load(open(file_name,'r'))
 	# Loop over adducts and fragments
-	for tr in all_vals['transformations']:
-		multiplicity = all_vals['transformations'][tr]['n']
-		charge = 0
-		adduct_mass = 0
-		vote = all_vals['transformations'][tr]['v']
-		for a in all_vals['transformations'][tr]['g']:
-			if a in all_vals['charges']:
+	
+	for c in all_vals['charge_carriers']:
+		if 'm' in all_vals['charge_carriers'][c]:
+			mult_vals = all_vals['charge_carriers'][c]['m']
+		else:
+			mult_vals = [1]
+
+		for multiplicity in mult_vals:
+			if multiplicity == 1:
+				mult_str = ""
+			else:
+				mult_str = str(multiplicity)
+			name =  "{}M{}".format(mult_str,c)
+			# print name
+			charge = 0
+			adduct_mass = 0
+			vote = all_vals['charge_carriers'][c]['v']
+			for a in all_vals['charge_carriers'][c]['g']:
 				charge += all_vals['charges'][a]
-			if a in all_vals['masses']:
 				adduct_mass += all_vals['masses'][a]
-		adduct_list = all_vals['transformations'][tr]['g']
-		transformations.append(Transformation(tr,adduct_mass,charge=charge,multiplicity=multiplicity,vote=vote,adducts = adduct_list))
+			print name,adduct_mass
+			charge_list = c
+			# print "\tCharge: {}".format(charge)
+			transformations.append(Transformation(name,adduct_mass,charge=charge,multiplicity=multiplicity,vote=vote,adducts = [],charges = c))
 
-		# for i in all_vals['isotopes']:
-		# 	isotope_diff = all_vals['masses'][i]
-		# 	newname = "{} [{}]".format(tr,i)
-		# 	transformations.append(Transformation(newname,adduct_mass,charge=charge,multiplicity=multiplicity,isotope_diff=isotope_diff))
+			if 'adducts' in all_vals:
+				for ad in all_vals['adducts']:
+					name = "[{}M{}]{}".format(mult_str,ad,c)
+					# print name
+					ad_vote = all_vals['adducts'][ad]['v']
+					transformations.append(Transformation(name,adduct_mass+all_vals['masses'][ad],charge=charge,multiplicity=multiplicity,vote=vote*ad_vote,adducts = ad,charges = c))
 
-		if 'fragments' in all_vals:
-			for f in all_vals['fragments']:
-				fragment_mass = all_vals['masses'][f]
-				if multiplicity == 1:
-					newname = "[M-{}]".format(f)
-				else:
-					newname = "[2M-{}]".format(f)
-				for a in all_vals['transformations'][tr]['g']:
-					if a[0] == '-':
-						newname += a
-					else:
-						newname += '+' + a
+		
+	# return transformations
+	# for tr in all_vals['transformations']:
+	# 	multiplicity = all_vals['transformations'][tr]['n']
+	# 	charge = 0
+	# 	adduct_mass = 0
+	# 	vote = all_vals['transformations'][tr]['v']
+	# 	for a in all_vals['transformations'][tr]['g']:
+	# 		if a in all_vals['charges']:
+	# 			charge += all_vals['charges'][a]
+	# 		if a in all_vals['masses']:
+	# 			adduct_mass += all_vals['masses'][a]
+	# 	adduct_list = all_vals['transformations'][tr]['g']
+	# 	transformations.append(Transformation(tr,adduct_mass,charge=charge,multiplicity=multiplicity,vote=vote,adducts = adduct_list))
 
-				frag_vote = all_vals['fragments'][f]['v']
-				transformations.append(Transformation(newname,adduct_mass,charge=charge,multiplicity=multiplicity,fragment_mass=fragment_mass,vote = vote*frag_vote,adducts = adduct_list,fragments = [f]))	
-				# for i in all_vals['isotopes']:
-				# 	isotope_diff = all_vals['masses'][i]
-				# 	newname = "{} [{}]".format(newname,i)
-				# 	transformations.append(Transformation(newname,adduct_mass,charge=charge,
-				# 											multiplicity=multiplicity,
-				# 											isotope_diff=isotope_diff,
-				# 											fragment_mass = fragment_mass))
+	# 	# for i in all_vals['isotopes']:
+	# 	# 	isotope_diff = all_vals['masses'][i]
+	# 	# 	newname = "{} [{}]".format(tr,i)
+	# 	# 	transformations.append(Transformation(newname,adduct_mass,charge=charge,multiplicity=multiplicity,isotope_diff=isotope_diff))
+
+	# 	if 'fragments' in all_vals:
+	# 		for f in all_vals['fragments']:
+	# 			fragment_mass = all_vals['masses'][f]
+	# 			if multiplicity == 1:
+	# 				newname = "[M-{}]".format(f)
+	# 			else:
+	# 				newname = "[2M-{}]".format(f)
+	# 			for a in all_vals['transformations'][tr]['g']:
+	# 				if a[0] == '-':
+	# 					newname += a
+	# 				else:
+	# 					newname += '+' + a
+
+	# 			frag_vote = all_vals['fragments'][f]['v']
+	# 			transformations.append(Transformation(newname,adduct_mass,charge=charge,multiplicity=multiplicity,fragment_mass=fragment_mass,vote = vote*frag_vote,adducts = adduct_list,fragments = [f]))	
+	# 			# for i in all_vals['isotopes']:
+	# 			# 	isotope_diff = all_vals['masses'][i]
+	# 			# 	newname = "{} [{}]".format(newname,i)
+	# 			# 	transformations.append(Transformation(newname,adduct_mass,charge=charge,
+	# 			# 											multiplicity=multiplicity,
+	# 			# 											isotope_diff=isotope_diff,
+	# 			# 											fragment_mass = fragment_mass))
 
 		
 	final_transformations = []
