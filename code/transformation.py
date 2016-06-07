@@ -1,21 +1,19 @@
 ELECTRON_MASS = 0.00054857990924
 
 class Transformation(object):
-	def __init__(self,name,adduct_mass,charge = 1,multiplicity = 1,fragment_mass = 0,isotope_diff = 0,parent = None,vote = 1.0,adducts = [],fragments = [],charges = []):
+	def __init__(self,name,adduct_mass,charge = 1,multiplicity = 1,isotope_diff = 0,parent = None,vote = 1.0,adducts = "none",charge_name = None):
 		self.name = name
 		self.adduct_mass = adduct_mass
 		self.charge = charge
 		self.multiplicity = multiplicity
-		self.fragment_mass = fragment_mass
 		self.isotope_diff = isotope_diff
 		self.parent = parent
 		self.vote = vote
-		self.fragments = fragments
 		self.adducts = adducts
-		self.charges = charges
+		self.charge_name = charge_name
 
 	def transform(self,peak):
-		M = peak.mass*abs(self.charge) + self.fragment_mass + self.charge*ELECTRON_MASS - self.adduct_mass
+		M = peak.mass*abs(self.charge) + self.charge*ELECTRON_MASS - self.adduct_mass
 		# M /= (1.0*self.multiplicity)
 		# M -= self.isotope_diff
 		M -= self.isotope_diff
@@ -27,7 +25,7 @@ class Transformation(object):
 		p = M
 		p += self.isotope_diff
 		p *= (1.0*self.multiplicity)
-		p = p + self.adduct_mass - self.charge*ELECTRON_MASS - self.fragment_mass
+		p = p + self.adduct_mass - self.charge*ELECTRON_MASS
 		p = p/self.charge
 		return p
 
@@ -62,17 +60,16 @@ def load_from_file(file_name):
 			for a in all_vals['charge_carriers'][c]['g']:
 				charge += all_vals['charges'][a]
 				adduct_mass += all_vals['masses'][a]
-			print name,adduct_mass
 			charge_list = c
 			# print "\tCharge: {}".format(charge)
-			transformations.append(Transformation(name,adduct_mass,charge=charge,multiplicity=multiplicity,vote=vote,adducts = [],charges = c))
+			transformations.append(Transformation(name,adduct_mass,charge=charge,multiplicity=multiplicity,vote=vote,charge_name= c))
 
 			if 'adducts' in all_vals:
 				for ad in all_vals['adducts']:
 					name = "[{}M{}]{}".format(mult_str,ad,c)
 					# print name
 					ad_vote = all_vals['adducts'][ad]['v']
-					transformations.append(Transformation(name,adduct_mass+all_vals['masses'][ad],charge=charge,multiplicity=multiplicity,vote=vote*ad_vote,adducts = ad,charges = c))
+					transformations.append(Transformation(name,adduct_mass+all_vals['masses'][ad],charge=charge,multiplicity=multiplicity,vote=vote*ad_vote,adducts = ad,charge_name = c))
 
 		
 	# return transformations
@@ -142,21 +139,19 @@ def load_from_file(file_name):
 		c13 = Transformation(new_name,t.adduct_mass,charge=t.charge,
 			multiplicity = t.multiplicity,
 			isotope_diff = c13_diff,
-			fragment_mass = t.fragment_mass,
 			parent = t,
 			vote = t.vote*iso_vote,
 			adducts = t.adducts,
-			fragments=t.fragments)
+			charge_name = t.charge_name)
 		final_transformations.append(c13)
 		new_name = t.name + '[2C13]'
 		c13_2 = Transformation(new_name,t.adduct_mass,charge=t.charge,
 			multiplicity = t.multiplicity,
 			isotope_diff = 2*c13_diff,
-			fragment_mass = t.fragment_mass,
 			parent = c13,
 			vote = c13.vote*iso_vote,
 			adducts = t.adducts,
-			fragments=t.fragments)
+			charge_name = t.charge_name)
 
 		final_transformations.append(c13_2)
 
@@ -166,22 +161,20 @@ def load_from_file(file_name):
 			c13_3 = Transformation(new_name,t.adduct_mass,charge=t.charge,
 			multiplicity = t.multiplicity,
 			isotope_diff = 3*c13_diff,
-			fragment_mass = t.fragment_mass,
 			parent = c13_2,
 			vote = c13.vote*iso_vote,
 			adducts = t.adducts,
-			fragments=t.fragments)
+			charge_name = t.charge_name)
 			final_transformations.append(c13_3)
 
 			new_name = t.name + '[4C13]'
 			c13_4 = Transformation(new_name,t.adduct_mass,charge=t.charge,
 			multiplicity = t.multiplicity,
 			isotope_diff = 3*c13_diff,
-			fragment_mass = t.fragment_mass,
 			parent = c13_3,
 			vote = c13.vote*iso_vote,
 			adducts = t.adducts,
-			fragments=t.fragments)
+			charge_name = t.charge_name)
 			final_transformations.append(c13_4)
 
 

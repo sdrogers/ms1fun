@@ -46,7 +46,7 @@ adducts:
 
 charges:
  -H: -1
- Cl: -1
+ +Cl: -1
  
 isotopes: 
  "C13":
