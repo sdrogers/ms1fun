@@ -128,4 +128,46 @@ class Voter(object):
                     actual_transforms.pop(po)
         return groups
 
+class ReverseVoter(object):
+    def __init__(self,transformations,peaks):
+        self.transformations = transformations
+        self.peaks = peaks
+        self.peaks_by_rt = sorted(self.peaks,key=lambda x:x.rt)
 
+    def find_mol(self,mol,rttol = 5,mtol=5,remove_found_peaks = False,verbose=True):
+        
+        if verbose:
+            print "Searching for {} with mz: {} and rt: {}".format(mol.name,mol.mass,mol.rt)
+        # Find peaks within the rt tolerance
+        candidate_peaks = []
+        predicted_masses = []
+        for tr in self.transformations:
+            predicted_masses.append(tr.reversetransform(mol.mass))
+
+        for peak in self.peaks_by_rt:
+            if peak.rt > mol.rt + rttol:
+                break
+            if peak.rt > mol.rt - rttol:
+                # Check its mass
+                for i,m in enumerate(predicted_masses):
+                    if self.hit(m,peak.mass,mtol):
+                        candidate_peaks.append((peak,self.transformations[i]))
+        if verbose:
+            print "Found {} explainable peaks within rt range".format(len(candidate_peaks))
+            for p,t in candidate_peaks:
+                print p.mass,p.rt,p.intensity,t
+
+        if remove_found_peaks:
+            for p,t in candidate_peaks:
+                if p in self.peaks:
+                    self.peaks.remove(p)
+                if p in self.peaks_by_rt:
+                    self.peaks_by_rt.remove(p)
+
+        return candidate_peaks
+
+    def hit(self,m1,m2,mtol):
+        if 1e6*abs(m1-m2)/m1 < mtol:
+            return True
+        else:
+            return False
