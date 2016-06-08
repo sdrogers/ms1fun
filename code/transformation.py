@@ -282,6 +282,47 @@ def load_from_file(file_name,charge_counts = {},adduct_counts = {},isotope_count
 	# print transformations
 	return final_transformations
 
+class Counts(object):
+	def __init__(self):
+		self.charge_counts = {}
+		self.adduct_counts = {}
+		self.isotope_counts = {}
+		self.multiplicity_counts = {}
+
+	def update(self,transformation):
+		if not transformation.charge_name in self.charge_counts:
+			self.charge_counts[transformation.charge_name] = 1
+		else:
+			self.charge_counts[transformation.charge_name] += 1
+		if not transformation.adducts in self.adduct_counts:
+			self.adduct_counts[transformation.adducts] = 1
+		else:
+			self.adduct_counts[transformation.adducts] += 1
+		if not transformation.isotope in self.isotope_counts:
+			self.isotope_counts[transformation.isotope] = 1
+		else:
+			self.isotope_counts[transformation.isotope] += 1
+		mu = str(transformation.multiplicity)
+		if not mu in self.multiplicity_counts:
+			self.multiplicity_counts[mu] = 1
+		else:
+			self.multiplicity_counts[mu] += 1
+
+	def __str__(self):
+		line = "\n\n"
+		line += "Charge counts\n"
+		for c in self.charge_counts:
+			line += "{}: {}\n".format(c,self.charge_counts[c])
+		line += "\nAdduct counts\n"
+		for a in self.adduct_counts:
+			line += "{}: {}\n".format(a,self.adduct_counts[a])
+		line += "\nIsotope counts\n"
+		for i in self.isotope_counts:
+			line += "{}: {}\n".format(i,self.isotope_counts[i])
+		line += "\nMultiplicity counts\n"
+		for m in self.multiplicity_counts:
+			line += "{}: {}\n".format(m,self.multiplicity_counts[m])
+		return line
 
 if __name__=='__main__':
 	load_from_file('pos_transformations.yml')

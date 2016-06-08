@@ -7,9 +7,11 @@ class HmdbMol(object):
 		self.formula = formula
 
 class HMDB(object):
-	def __init__(self,dname='../dbs/hmdb.txt'):
+	def __init__(self,dname='../dbs/hmdb.txt',hmdb_filter = []):
 		self.dname = dname
+		self.hmdb_filter = hmdb_filter
 		self.load_db()
+		print "Loaded {} molecules from {}".format(len(self.mols),self.dname)
 		# Sort by mass (ascending)
 		self.mols = sorted(self.mols,key=lambda x: x.mass)
 		self.n_mols = len(self.mols)
@@ -25,13 +27,15 @@ class HMDB(object):
 				mass = split_line[1]
 				name = split_line[2]
 				if len(split_line)>3:
-					for i in range(len(split_line)-3):
+					for i in range(len(split_line)-4):
 						name += ',' + split_line[i+3]
+				status = split_line[-1].strip()
 				if mass == 'None':
 					mass = 0.0
 				else:
 					mass = float(mass)
-				self.mols.append(HmdbMol(name,mass,formula))
+				if not status in self.hmdb_filter:
+					self.mols.append(HmdbMol(name,mass,formula))
 
 	def get_hits(self,M,tol=10):
 		min_val = M - tol*(M/1e6)

@@ -119,12 +119,12 @@ def standard_analysis(groups,mtol=10,rttol=10,mode='pos',filename='blah',v_thres
 	perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits,outpre)
 
 
-def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.arange(1.0,7.0,0.5)):
+def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.arange(1.0,7.0,0.5),hmdb_filter = []):
 
 	outpre = 'output/' + mode + '/' + filename
 
 	from databases import HMDB
-	hmdb = HMDB()
+	hmdb = HMDB(hmdb_filter = hmdb_filter)
 	# Find the hits across all peaks at mtol
 	group_hits = 0
 	raw_hits = 0
@@ -140,6 +140,9 @@ def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.ar
 	ns_group_hits = 0
 
 	n_peaks = 0
+
+	from transformation import Counts
+	counts = Counts()
 
 	for group in groups:
 		if len(group.members) > 1:
@@ -162,6 +165,8 @@ def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.ar
 			group_hits += 1
 			if len(group.members) > 1:
 				ns_group_hits += 1
+			for p,t,_ in group.members:
+				counts.update(t)
 		else:
 			h = 0
 		vh.append((group.vote,h))
@@ -176,6 +181,7 @@ def hmdb_analysis(groups,mtol=10,mode = 'pos',filename = 'blah',v_thresh = np.ar
 	# i.e. of all the peaks in non-singleton groups, if we randomly selected
 	# M from them, what would we get
 	perm_plot(ns_group_peak_hits,ns_groups,ns_group_hits,outpre)
+	return counts
 
 
 def make_thresh_plots(vh,v_thresh,outpre):
