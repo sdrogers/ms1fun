@@ -134,7 +134,7 @@ class ReverseVoter(object):
         self.peaks = peaks
         self.peaks_by_rt = sorted(self.peaks,key=lambda x:x.rt)
 
-    def find_mol(self,mol,rttol = 5,mtol=5,remove_found_peaks = False,verbose=True):
+    def find_mol(self,mol,rttol = 10,mtol=10,remove_found_peaks = False,verbose=True):
         
         if verbose:
             print "Searching for {} with mz: {} and rt: {}".format(mol.name,mol.mass,mol.rt)

@@ -1,12 +1,12 @@
 multiplicities:
-  "1": 5.0
+  "1": 10.0
   "2": 1.0
 
 charge_carriers:
   "+H":
     g: ['+H']
     m: [1,2]
-    v: 2.0
+    v: 5.0
 
   "+2H":
     g: ['+H','+H']
@@ -14,15 +14,15 @@ charge_carriers:
 
   "+K":
     g: ['+K']
-    v: 1.0
+    v: 2.0
 
   "+Na":
     g: ['+Na']
-    v: 1.0
+    v: 2.0
 
 adducts:
   "none":
-    v: 2.0
+    v: 5.0
 
   "+ACN":
     v: 1.0
@@ -59,14 +59,14 @@ charges:
 
 isotopes: 
  "mono":
-  v: 5.0
+  v: 10.0
 
  "C13":
-  v: 4.0
+  v: 2.0
   
  "2C13":
-  v: 3.0
-  
+  v: 1.0
+
 
 
 
