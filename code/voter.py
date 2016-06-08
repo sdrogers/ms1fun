@@ -134,7 +134,7 @@ class ReverseVoter(object):
         self.peaks = peaks
         self.peaks_by_rt = sorted(self.peaks,key=lambda x:x.rt)
 
-    def find_mol(self,mol,rttol = 10,mtol=10,remove_found_peaks = False,verbose=True):
+    def find_mol(self,mol,rttol = 10,mtol=5,remove_found_peaks = False,verbose=True):
         
         if verbose:
             print "Searching for {} with mz: {} and rt: {}".format(mol.name,mol.mass,mol.rt)
@@ -143,7 +143,7 @@ class ReverseVoter(object):
         predicted_masses = []
         for tr in self.transformations:
             predicted_masses.append(tr.reversetransform(mol.mass))
-
+        total_vote = 0.0
         for peak in self.peaks_by_rt:
             if peak.rt > mol.rt + rttol:
                 break
@@ -152,10 +152,12 @@ class ReverseVoter(object):
                 for i,m in enumerate(predicted_masses):
                     if self.hit(m,peak.mass,mtol):
                         candidate_peaks.append((peak,self.transformations[i]))
+                        total_vote += self.transformations[i].vote
         if verbose:
             print "Found {} explainable peaks within rt range".format(len(candidate_peaks))
+            print "Vote {}".format(total_vote)
             for p,t in candidate_peaks:
-                print p.mass,p.rt,p.intensity,t
+                print "{:.4f},{:.4f},{:.2e}, {}".format(p.mass,p.rt,p.intensity,t)
 
         if remove_found_peaks:
             for p,t in candidate_peaks:
