@@ -23,8 +23,8 @@ with open(outfile,'w') as f:
 		name = e.findall('name')[0].text
 		formula = e.findall('chemical_formula')[0].text
 		mass = e.findall('monisotopic_moleculate_weight')[0].text
-
-		out_line = "{},{},{}\n".format(formula,mass,name.encode('ascii','ignore'))
+		status = e.findall('ontology')[0][0].text
+		out_line = "{},{},{},{}\n".format(formula,mass,name.encode('ascii','ignore'),status)
 		f.write(out_line)
 
 
