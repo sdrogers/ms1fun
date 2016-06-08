@@ -1,8 +1,34 @@
-Pantothenate (219.110672662,442.8) (vote=2.2)
+Pantothenate (219.110672662,442.8) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	235.1290,445.2054,4.38e+04,M+NH3-H (219.1097,0.5)
-	174.1125,442.7577,4.80e+04,[M-CO2]-H (219.1096,0.5)
-	190.1074,443.9806,2.26e+05,[M-CO]-H (219.1096,0.5)
-	191.1107,442.7577,1.46e+04,[M-CO]-H[C13] (219.1095,0.45)
-	191.1391,443.9806,9.91e+04,[M-CO2]+NH3-H (219.1096,0.25)
+	218.1023,399.9958,1.05e+05,M-H (219.1096,1.0)
+
+L-Carnitine (161.105193354,589.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	160.0969,540.4835,4.02e+05,M-H (161.1041,1.0)
+
+L-isoleucine (131.094628667,551.4) (vote=1.1)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	171.1128,578.5749,1.11e+05,M+ACN-H (131.0935,0.6)
+	147.1147,577.3475,1.08e+04,M+NH3-H (131.0954,0.5)
+
+4-Trimethylammoniobutanoate (145.110278732,583.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	144.1018,534.3286,1.36e+04,M-H (145.1091,1.0)
+
+Pyridoxine (169.073893225,435.6) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	168.0656,419.6147,3.44e+05,M-H (169.0729,1.0)
+
+thymine (126.042927448,421.8) (vote=1.3)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	125.0364,440.3187,9.19e+04,M-H (126.0437,1.0)
+	127.0502,440.3187,8.47e+05,[M-CO2]+CH2O2-H (126.0418,0.3)
+
+L-Noradrenaline (169.073893225,457.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	168.0656,419.6147,3.44e+05,M-H (169.0729,1.0)
+
+2-Phenylglycine (151.063328539,434.4) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	150.0551,417.1678,3.84e+04,M-H (151.0624,1.0)
 

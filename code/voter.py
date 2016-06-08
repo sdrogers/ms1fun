@@ -69,26 +69,41 @@ class Voter(object):
                 
                 tran_ind = [i]
                 temp_tran = [actual_transforms[i]]
+                found_peaks = [original_peaks[i]]
                 while True:
                     pos += 1
                     if pos >= len(transformed_masses):
                         break
                     if transformed_masses[pos]<=up:
-                        tran_ind.append(pos)
-                        temp_tran.append(actual_transforms[pos])
+                        if not original_peaks[pos] in found_peaks:
+                            tran_ind.append(pos)
+                            temp_tran.append(actual_transforms[pos])
+                            found_peaks.append(original_peaks[pos])
+                        else:
+                            already = found_peaks.index(original_peaks[pos])
+                            if temp_tran[already].vote < actual_transforms[pos].vote:
+                                # replace the original one with this one if it has a higher vote
+                                tran_ind[already] = pos
+                                temp_tran[already] = actual_transforms[pos]
                     else:
                         break
 
-                to_remove = []
-                for k,j in enumerate(tran_ind):
-                    if not actual_transforms[j].parent == None:
-                        if actual_transforms[j].parent in temp_tran:
-                            pass
-                        else:
-                            to_remove.append(k)
-                to_remove = sorted(to_remove,reverse=True)
-                for j in to_remove:
-                    tran_ind.pop(j)
+                # This loop should enable second order dependencies
+                finished = False
+                while not finished:
+                    to_remove = []
+                    for k,j in enumerate(tran_ind):
+                        if not actual_transforms[j].parent == None:
+                            if actual_transforms[j].parent in temp_tran:
+                                pass
+                            else:
+                                to_remove.append(k)
+                    if len(to_remove) == 0:
+                        finished = True
+                    to_remove = sorted(to_remove,reverse=True)
+                    for j in to_remove:
+                        tran_ind.pop(j)
+
                 total_vote = 0.0
                 for k,j in enumerate(tran_ind):
                     total_vote += actual_transforms[j].vote
@@ -113,4 +128,48 @@ class Voter(object):
                     actual_transforms.pop(po)
         return groups
 
+class ReverseVoter(object):
+    def __init__(self,transformations,peaks):
+        self.transformations = transformations
+        self.peaks = peaks
+        self.peaks_by_rt = sorted(self.peaks,key=lambda x:x.rt)
 
+    def find_mol(self,mol,rttol = 10,mtol=5,remove_found_peaks = False,verbose=True):
+        
+        if verbose:
+            print "Searching for {} with mz: {} and rt: {}".format(mol.name,mol.mass,mol.rt)
+        # Find peaks within the rt tolerance
+        candidate_peaks = []
+        predicted_masses = []
+        for tr in self.transformations:
+            predicted_masses.append(tr.reversetransform(mol.mass))
+        total_vote = 0.0
+        for peak in self.peaks_by_rt:
+            if peak.rt > mol.rt + rttol:
+                break
+            if peak.rt > mol.rt - rttol:
+                # Check its mass
+                for i,m in enumerate(predicted_masses):
+                    if self.hit(m,peak.mass,mtol):
+                        candidate_peaks.append((peak,self.transformations[i]))
+                        total_vote += self.transformations[i].vote
+        if verbose:
+            print "Found {} explainable peaks within rt range".format(len(candidate_peaks))
+            print "Vote {}".format(total_vote)
+            for p,t in candidate_peaks:
+                print "{:.4f},{:.4f},{:.2e}, {}".format(p.mass,p.rt,p.intensity,t)
+
+        if remove_found_peaks:
+            for p,t in candidate_peaks:
+                if p in self.peaks:
+                    self.peaks.remove(p)
+                if p in self.peaks_by_rt:
+                    self.peaks_by_rt.remove(p)
+
+        return candidate_peaks
+
+    def hit(self,m1,m2,mtol):
+        if 1e6*abs(m1-m2)/m1 < mtol:
+            return True
+        else:
+            return False

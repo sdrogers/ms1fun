@@ -1,72 +1,23 @@
-Creatinine (113.058911863,496.8) (vote=2.8)
+Creatinine (113.058911863,496.8) (vote=2.71)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	112.0517,494.6380,8.21e+08,M-H (113.0590,1.0)
 	113.0550,494.6380,3.61e+07,M-H[C13] (113.0590,0.9)
-	114.0582,497.1030,6.42e+05,M-H[2C13] (113.0588,0.9)
-
-Hypoxanthine (136.038510772,514.2) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	135.0313,510.6930,5.72e+06,M-H (136.0386,1.0)
-	136.0346,511.9270,4.11e+05,M-H[C13] (136.0385,0.9)
-
-Pantothenate (219.110672662,442.8) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	218.1036,435.2530,5.36e+06,M-H (219.1109,1.0)
-	219.1069,432.7830,5.51e+05,M-H[C13] (219.1108,0.9)
-
-N(pi)-Methyl-L-histidine (169.085126613,567.0) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	168.0779,562.6330,3.38e+07,M-H (169.0852,1.0)
-	169.0813,562.6330,2.66e+06,M-H[C13] (169.0852,0.9)
-
-Guanosine (283.091668555,579.6) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	282.0848,583.6940,2.50e+05,M-H (283.0921,1.0)
-
-Betaine (117.078978603,534.6) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	116.0717,530.5020,4.16e+06,M-H (117.0790,1.0)
-
-L-Leucine (131.094628667,520.8) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	130.0874,520.5830,6.38e+06,M-H (131.0946,1.0)
-	131.0907,524.3250,3.86e+05,M-H[C13] (131.0946,0.9)
+	114.0582,497.1030,6.42e+05,M-H[2C13] (113.0588,0.81)
 
 L-Phenylalanine (165.078978603,499.8) (vote=1.9)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	164.0719,499.5700,7.61e+06,M-H (165.0792,1.0)
 	165.0773,500.8040,2.98e+05,M-H[C13] (165.0812,0.9)
 
-5-Oxoproline (129.042593097,491.4) (vote=1.9)
+L-Leucine (131.094628667,520.8) (vote=1.9)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	128.0354,483.5180,1.03e+08,M-H (129.0427,1.0)
-	129.0387,483.5180,6.28e+06,M-H[C13] (129.0427,0.9)
+	130.0874,520.5830,6.38e+06,M-H (131.0946,1.0)
+	131.0907,524.3250,3.86e+05,M-H[C13] (131.0946,0.9)
 
-L-Lysine (146.105527705,927.6) (vote=1.9)
+L-isoleucine (131.094628667,551.4) (vote=1.9)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	145.0983,929.4620,3.19e+06,M-H (146.1056,1.0)
-	146.1017,933.2560,2.17e+05,M-H[C13] (146.1056,0.9)
-
-L-Histidine (155.069476549,622.8) (vote=2.7)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	154.0623,620.9230,2.82e+07,M-H (155.0696,1.0)
-	155.0657,622.1590,1.91e+06,M-H[C13] (155.0696,0.9)
-	110.0724,624.6660,1.01e+05,[M-CO2]-H (155.0695,0.5)
-	172.0729,624.6660,7.08e+05,[M-CO]+CH2O2-H (155.0696,0.3)
-
-L-Cystine (240.023848265,647.4) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	239.0169,643.2840,7.93e+06,M-H (240.0242,1.0)
-	240.0203,643.2840,6.07e+05,M-H[C13] (240.0242,0.9)
-
-Uracil (112.027277383,463.2) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	111.0200,461.2410,5.60e+06,M-H (112.0273,1.0)
-	112.0234,462.5080,2.46e+05,M-H[C13] (112.0273,0.9)
-
-L-homoserine (119.058243161,637.8) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	118.0510,637.0690,4.80e+05,M-H (119.0583,1.0)
+	130.0874,520.5830,6.38e+06,M-H (131.0946,1.0)
+	131.0907,524.3250,3.86e+05,M-H[C13] (131.0946,0.9)
 
 L-Glutamine (146.069142198,633.0) (vote=2.85)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
@@ -75,7 +26,102 @@ L-Glutamine (146.069142198,633.0) (vote=2.85)
 	127.0513,629.6140,3.43e+06,[M-H2O]-H (146.0692,0.5)
 	128.0547,632.0900,2.36e+05,[M-H2O]-H[C13] (146.0692,0.45)
 
+5-Oxoproline (129.042593097,491.4) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	128.0354,483.5180,1.03e+08,M-H (129.0427,1.0)
+	129.0387,483.5180,6.28e+06,M-H[C13] (129.0427,0.9)
+
+Pantothenate (219.110672662,442.8) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	218.1036,435.2530,5.36e+06,M-H (219.1109,1.0)
+	219.1069,432.7830,5.51e+05,M-H[C13] (219.1108,0.9)
+
+5-Aminolevulinate (131.058243161,578.4) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	130.0510,536.7100,9.12e+05,M-H (131.0583,1.0)
+
+trans-4-Hydroxy-L-proline (131.058243161,622.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	130.0510,634.5980,6.40e+05,M-H (131.0583,1.0)
+
+Imidazole-4-acetate (126.042927448,532.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	125.0357,552.7530,6.19e+05,M-H (126.0430,1.0)
+
+riboflavin (376.138284396,452.4) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	375.1302,434.0180,6.32e+05,M-H (376.1375,1.0)
+
+Glycylglycine (132.053492134,589.8) (vote=1.5)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	131.0462,635.8330,4.08e+06,M-H (132.0535,1.0)
+	113.0357,637.0690,5.03e+05,[M-H2O]-H (132.0535,0.5)
+
+Thiamin (264.104481847,971.4) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	263.0975,989.5060,2.04e+04,M-H (264.1047,1.0)
+
+Picolinic acid (123.03202841,453.0) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	122.0248,441.4280,4.87e+05,M-H (123.0321,1.0)
+
+thymine (126.042927448,421.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	125.0357,408.0700,2.13e+06,M-H (126.0429,1.0)
+
+L-Serine (105.042593097,657.6) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	104.0354,654.4520,3.60e+06,M-H (105.0426,1.0)
+	105.0387,654.4520,1.73e+05,M-H[C13] (105.0426,0.9)
+
 Selenomethionine (117.078978603,538.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	116.0717,530.5020,4.16e+06,M-H (117.0790,1.0)
+
+Ala-Gly (146.069142198,540.0) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	145.0619,523.0890,1.71e+06,M-H (146.0692,1.0)
+
+Isonicotinic acid (123.03202841,415.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	122.0248,441.4280,4.87e+05,M-H (123.0321,1.0)
+
+L-homoserine (119.058243161,637.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	118.0510,637.0690,4.80e+05,M-H (119.0583,1.0)
+
+Uracil (112.027277383,463.2) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	111.0200,461.2410,5.60e+06,M-H (112.0273,1.0)
+	112.0234,462.5080,2.46e+05,M-H[C13] (112.0273,0.9)
+
+L-Tryptophan (204.08987764,555.0) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	203.0828,555.2200,1.14e+07,M-H (204.0901,1.0)
+
+Betaine (117.078978603,534.6) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	116.0717,530.5020,4.16e+06,M-H (117.0790,1.0)
+
+S-Adenosyl-L-homocysteine (384.121588475,579.6) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	383.1151,578.7200,4.32e+05,M-H (384.1224,1.0)
+
+L-Arginine (174.111675715,996.0) (vote=2.71)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	173.1045,999.9400,2.44e+06,M-H (174.1117,1.0)
+	174.1078,997.2040,1.69e+05,M-H[C13] (174.1117,0.9)
+	175.1086,999.9400,6.34e+03,M-H[2C13] (174.1092,0.81)
+
+O-Acetyl-L-serine (147.053157783,586.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	146.0460,604.7810,2.27e+06,M-H (147.0532,1.0)
+
+L-cysteine (121.019749164,612.6) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	120.0125,642.0130,6.10e+05,M-H (121.0197,1.0)
+
+L-Valine (117.078978603,570.6) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	116.0717,530.5020,4.16e+06,M-H (117.0790,1.0)
 
@@ -84,58 +130,110 @@ L-Cystine (240.023848265,646.2) (vote=1.9)
 	239.0169,643.2840,7.93e+06,M-H (240.0242,1.0)
 	240.0203,643.2840,6.07e+05,M-H[C13] (240.0242,0.9)
 
-S-Adenosyl-L-homocysteine (384.121588475,579.6) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	383.1151,578.7200,4.32e+05,M-H (384.1224,1.0)
-
-L-Cystathionine (222.067427639,671.4) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	221.0604,669.3440,9.65e+05,M-H (222.0677,1.0)
-	222.0637,668.1060,8.76e+04,M-H[C13] (222.0676,0.9)
-
-L-Valine (117.078978603,570.6) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	116.0717,567.5720,4.55e+06,M-H (117.0790,1.0)
-
-L-Arginine (174.111675715,996.0) (vote=2.8)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	173.1045,999.9400,2.44e+06,M-H (174.1117,1.0)
-	174.1078,997.2040,1.69e+05,M-H[C13] (174.1117,0.9)
-	175.1086,999.9400,6.34e+03,M-H[2C13] (174.1092,0.9)
-
-N2-Acetyl-L-lysine (188.116092391,628.2) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	187.1090,624.6660,1.59e+06,M-H (188.1162,1.0)
-
-L-Citrulline (175.0956913,656.4) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	174.0885,650.7060,1.82e+06,M-H (175.0958,1.0)
-	175.0919,651.9430,1.30e+05,M-H[C13] (175.0959,0.9)
-
-L-Serine (105.042593097,657.6) (vote=1.9)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	104.0354,654.4520,3.60e+06,M-H (105.0426,1.0)
-	105.0387,654.4520,1.73e+05,M-H[C13] (105.0426,0.9)
-
-L-Tryptophan (204.08987764,555.0) (vote=1.0)
-	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	203.0828,555.2200,1.14e+07,M-H (204.0901,1.0)
-
 L-Proline (115.063328539,580.8) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	114.0560,577.4840,1.17e+06,M-H (115.0633,1.0)
+
+Glycine (75.0320284101,658.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	74.0245,655.6890,8.83e+05,M-H (75.0318,1.0)
+
+L-Carnitine (161.105193354,589.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	160.0980,607.2750,3.80e+05,M-H (161.1053,1.0)
+
+Guanosine (283.091668555,579.6) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	282.0848,583.6940,2.50e+05,M-H (283.0921,1.0)
 
 L-Asparagine (132.053492134,638.4) (vote=1.5)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	131.0462,635.8330,4.08e+06,M-H (132.0535,1.0)
 	113.0357,637.0690,5.03e+05,[M-H2O]-H (132.0535,0.5)
 
+N(pi)-Methyl-L-histidine (169.085126613,567.0) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	168.0779,562.6330,3.38e+07,M-H (169.0852,1.0)
+	169.0813,562.6330,2.66e+06,M-H[C13] (169.0852,0.9)
+
+L-Noradrenaline (169.073893225,457.8) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	168.0668,487.2200,9.58e+05,M-H (169.0741,1.0)
+
+L-Histidine (155.069476549,622.8) (vote=2.7)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	154.0623,620.9230,2.82e+07,M-H (155.0696,1.0)
+	155.0657,622.1590,1.91e+06,M-H[C13] (155.0696,0.9)
+	110.0724,624.6660,1.01e+05,[M-CO2]-H (155.0695,0.5)
+	172.0729,624.6660,7.08e+05,[M-CO]+CH2O2-H (155.0696,0.3)
+
+4-Trimethylammoniobutanoate (145.110278732,583.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	144.1030,570.0420,1.85e+05,M-H (145.1103,1.0)
+
+N2-Acetyl-L-lysine (188.116092391,628.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	187.1090,624.6660,1.59e+06,M-H (188.1162,1.0)
+
+L-Cystathionine (222.067427639,671.4) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	221.0604,669.3440,9.65e+05,M-H (222.0677,1.0)
+	222.0637,668.1060,8.76e+04,M-H[C13] (222.0676,0.9)
+
+Thiopurine S-methylether (166.031316904,377.4) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	165.0228,419.1680,1.83e+06,M-H (166.0301,1.0)
+
 L-Ornithine (132.08987764,871.2) (vote=1.9)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
 	131.0826,877.3770,3.81e+05,M-H (132.0899,1.0)
 	132.0860,873.5370,2.66e+04,M-H[C13] (132.0899,0.9)
 
-Glycine (75.0320284101,658.8) (vote=1.0)
+Nicotinate (123.03202841,412.2) (vote=1.0)
 	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
-	74.0245,655.6890,8.83e+05,M-H (75.0318,1.0)
+	122.0248,441.4280,4.87e+05,M-H (123.0321,1.0)
+
+L-Lysine (146.105527705,927.6) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	145.0983,929.4620,3.19e+06,M-H (146.1056,1.0)
+	146.1017,933.2560,2.17e+05,M-H[C13] (146.1056,0.9)
+
+Glycerol (92.0473441234,480.0) (vote=1.6)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	91.0401,514.4090,2.17e+06,M-H (92.0474,1.0)
+	132.0667,519.3470,9.98e+05,M+ACN-H (92.0474,0.6)
+
+L-Cystine (240.023848265,647.4) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	239.0169,643.2840,7.93e+06,M-H (240.0242,1.0)
+	240.0203,643.2840,6.07e+05,M-H[C13] (240.0242,0.9)
+
+N-Acetyl-D-glucosamine (221.08993722,550.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	220.0829,535.4770,4.08e+05,M-H (221.0901,1.0)
+
+Hypoxanthine (136.038510772,514.2) (vote=5.375)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	135.0299,542.8820,1.32e+09,M-H (136.0372,1.0)
+	136.0332,542.8820,5.67e+07,M-H[C13] (136.0371,0.9)
+	137.0366,541.6450,9.80e+05,M-H[2C13] (136.0371,0.81)
+	137.0341,539.1770,1.46e+07,M-H[2C13] (136.0347,0.81)
+	271.0674,541.6450,1.28e+07,2M-H (136.0373,0.5)
+	117.0193,542.8820,5.33e+06,[M-H2O]-H (136.0372,0.5)
+	272.0708,539.1770,1.18e+06,2M-H[C13] (136.0374,0.45)
+	273.0728,541.6450,7.02e+05,2M-H[2C13] (136.0367,0.405)
+
+L-Citrulline (175.0956913,656.4) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	174.0885,650.7060,1.82e+06,M-H (175.0958,1.0)
+	175.0919,651.9430,1.30e+05,M-H[C13] (175.0959,0.9)
+
+4-Aminobutanoate (103.063328539,649.2) (vote=1.9)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	102.0561,610.9810,9.99e+06,M-H (103.0633,1.0)
+	103.0594,610.9810,4.27e+05,M-H[C13] (103.0634,0.9)
+
+L-Threonine (119.058243161,619.2) (vote=1.0)
+	Peak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)
+	118.0510,637.0690,4.80e+05,M-H (119.0583,1.0)
 
