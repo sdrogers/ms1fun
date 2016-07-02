@@ -1,7 +1,6 @@
 # Questions:
 # 1. Total vote is very low (0.32967032967 compared to 6.765 in ..._by_vote.txt). Changes to transformations' files?
 # 2. Calculation of the mass in PeakGroup - is it needed?
-# 3. (Aside) How does encapsulation work in python? No getters/setters?
 
 import os, sys
 sys.path.insert(0, os.path.normpath(os.getcwd() + os.sep + os.pardir) + '/code/')
