@@ -1,6 +1,8 @@
 # Questions:
 # 1. Total vote is very low (0.32967032967 compared to 6.765 in ..._by_vote.txt). Changes to transformations' files?
 # 2. Calculation of the mass in PeakGroup - is it needed?
+# 3. Let's say we ignore isotopic masses. But the results don't match. Is it a problem? Or have we just avoided
+# false groups?
 
 import os, sys
 sys.path.insert(0, os.path.normpath(os.getcwd() + os.sep + os.pardir) + '/code/')
@@ -99,10 +101,12 @@ class Algorithm(object):
 
             """            3rd step of the algorithm           """
             # Finds the possible molecular masses for the most intense peak. Found by applying all transformation to
-            # the most intense peak from the list.
+            # the most intense peak from the list. As it is the most intense peak, we can assume it is mono-isotopic.
+            # Thus, we do not need C13 and 2C13, which we can skip when determining what to add to the molecular masses.
             molecular_masses = []   # M:: list of molecular masses
             for transformation in self.transformations:
-                molecular_masses.append(transformation.transform(most_intense))
+                if transformation.name[-4:-1] != 'C13':
+                    molecular_masses.append(transformation.transform(most_intense))
 
             """            4th step of the algorithm: a           """
             highest_voted = PeakGroup()     # Highest voted group of peaks
@@ -118,8 +122,10 @@ class Algorithm(object):
             # holds total vote (from transformations) and mass, in addition to information on the peak and transformas
             # that can be used to arrive at the initial mass (or to calculate end mass from initial mass).
             for mass in molecular_masses:
-                # Performs reverse transformations on a given mass. Gives possible masses for the peak.
                 reverse_masses = []   # N:: reverse transformation on molecular masses. Stores mass + transformation
+                # Performs reverse transformations on a given mass. Gives possible masses for the peak.
+                # Since transformations are being done on the "bare" molecular mass, we want to know all possible
+                # values it can take, including the isotopic (C13, 2C13) ones as well.
                 for transformation in self.transformations:
                     peak_mass = transformation.reversetransform(mass)
                     reverse_masses.append([peak_mass, transformation])
@@ -149,7 +155,7 @@ class Algorithm(object):
             for peak in grouped_peaks:
                 rt_sorted.remove(peak)
                 intensity_sorted.remove(peak)
-            # print ("\n{} peaks left to process...".format(len(rt_sorted)))
+            print ("\n{} peaks left to process...".format(len(rt_sorted)))
 
         """         The End         """
         return groups
