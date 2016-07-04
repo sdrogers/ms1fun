@@ -23,6 +23,7 @@ print ("\nLoaded " + str(len(transformations)) + " transformations.")
 cluster = Algorithm(file_path, transformations, rt_thresh=2, tolerance=10)
 
 # Taking most intense peak, figuring out the groups around it (within given RT window)
+print ("Processing...")
 start_time = time.clock()
 groups = cluster.heavylifting()
 end_time = time.clock()
@@ -40,7 +41,7 @@ with open(output_path, 'w') as f:
         f.write(line)
         line = '\tPeak m/z,Peak rt,Peak intensity,transformation (transformed mass,vote)\n'
         f.write(line)
-        # members = (peak, transformation, transformed_mass); x[1] = trasnformation
+        # members = (peak, transformation, transformed_mass); x[1] = transformation
         for (peak, transformation, transformed_mass) in sorted(group.members, key=lambda x: x[1].vote, reverse=True):
             line = "\t{:.4f},{:.4f},{:.2e},{} ({:.4f},{:.4f})\n".format(peak.mass, peak.rt, peak.intensity,
                     transformation, transformed_mass, transformation.vote)
