@@ -15,7 +15,7 @@ class PeakGroup(object):
     def __init__(self):
         self.members = []   # Peak that fits the transformation, transformation itself and transformed mass
         self.vote = 0.0     # Total group vote
-        self.mass = 0.0     # Group mass
+        self.M = 0.0        # Group mass
 
     def add_peak(self, peak, transformation):
         # Rather awkward way to check if the peak already exists in the group. If it does, and has a higher vote,
@@ -37,18 +37,18 @@ class PeakGroup(object):
             return
 
         # Calculates mass of a group. Adapted from voter.py.
-        total_intensity = 0.0       # Total intensity of all peaks in the group.
-        self.mass = 0.0             # To reset mass each time the peak is added.
+        total_intensity = 0.0    # Total intensity of all peaks in the group.
+        self.M = 0.0             # To reset mass each time the peak is added.
         self.vote = 0.0
         for member in self.members:
-            self.vote += member[1].vote
-            self.mass += member[0].intensity * member[2]    # Peak's intensity * transformed peak
-            total_intensity += member[0].intensity          # total intensity += peak intensity
-        self.mass /= total_intensity
+            self.vote += member[1].vote                 # total vote += transformation.vote
+            self.M += member[0].intensity * member[2]   # mass = peak's intensity * transformed peak
+            total_intensity += member[0].intensity      # total intensity += peak intensity
+        self.M /= total_intensity
 
     # For printing in terminal. No other purpose, can be deleted later on to make the code tidier.
     def __str__(self):
-        representation = "\nTotal vote: {} Mass: {}".format(self.vote, self.mass)
+        representation = "\nTotal vote: {} Mass: {}".format(self.vote, self.M)
         for peak, transformation, transformed_mass in sorted(self.members, key=lambda x: x[1].vote, reverse=True):
             representation += "\n   {:.4f}, {:.4f}, {:.2e}, {} ({:.4f}, {:.4f})".format(peak.mass, peak.rt,
                                 peak.intensity, transformation, transformed_mass, transformation.vote)
@@ -169,7 +169,7 @@ class Algorithm(object):
             for peak in grouped_peaks:
                 rt_sorted.remove(peak)
                 intensity_sorted.remove(peak)
-            print ("{} peaks left to process...".format(len(rt_sorted)))
+            # print ("{} peaks left to process...".format(len(rt_sorted)))
 
         """         The End         """
         return groups
@@ -192,7 +192,7 @@ class Algorithm(object):
             # Enters this only if there were no orphans left in the group
             if len(to_remove) <= 0:
                 finished = True
-            # Only need to recalculate votes if we removed anything
+            # Only need to recalculate votes if something was removed
             else:
                 group.recalculate()
         return group
@@ -219,12 +219,7 @@ class Algorithm(object):
             index -= 1
         return thresh_group
 
-    """                         FUNCTIONS FOR QUICK & DIRTY TESTING                         """
-    # Sort on intensity - least to most
-    def intensity_sort(self):
-        int_sort = sorted(self.peaks, key=lambda x: x.intensity, reverse=False)
-        return int_sort
-
+    """                         Temporary: for testing                         """
     def print_peaks(self, peak_group=None):
         # Default will print peaks in an order they were retrieved from a file.
         # However, if some parameter is given, this will be skipped and other group of peaks printed.
