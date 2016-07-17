@@ -3,14 +3,15 @@ from sv_algorithm import IntensityClustering
 # import cProfile, pstats, StringIO
 sys.path.insert(0, '../code/')
 import transformation
+from helper_functions import hmdb_analysis
 
 # Profiling stuff
 # pr = cProfile.Profile()
 # pr.enable()
 
 # The path where data files live: currently, it is in grandparent_folder/data/<file>.csv
-grandparent = os.path.normpath(os.getcwd() + os.sep + os.pardir + os.sep + os.pardir)
-data_dir = grandparent + '/data/'
+grandparent_dir = os.path.normpath(os.getcwd() + os.sep + os.pardir + os.sep + os.pardir)
+data_dir = grandparent_dir + '/data/'
 data_file = 'Urine_37_fullscan1_POS.csv'
 file_path = data_dir + data_file
 
@@ -35,7 +36,7 @@ print ("Data processing time: " + str(end_time-start_time))
 
 # Write out the results to a file. Top voted group presented at the top.
 groups = sorted(groups, key=lambda x: x.vote, reverse=True)
-output_dir = grandparent + '/output/'
+output_dir = grandparent_dir + '/output/'
 output_file = 'Urine_37_fullscan1_POS_by_vote.txt'
 output_path = output_dir + output_file
 
@@ -54,6 +55,9 @@ with open(output_path, 'w') as f:
 
 print ("\nOutput file has been prepared:\n{}".format(output_path))
 print ("Total groups found: " + str(len(groups)))
+
+counts = hmdb_analysis(groups, filename=output_file[:-4])
+
 
 # Command line printing
 # for group in groups:

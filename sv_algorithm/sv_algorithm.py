@@ -1,9 +1,7 @@
 # Questions:
-# 1. Calculation of the mass in PeakGroup - is it needed?
-# 2. Let's say we ignore isotopes. But the results don't match. Is it a problem? Or have we just avoided false groups?
-# 3. Testing: both for thesis & to make sure algorithm is bug-free. What's the best approach? One part would be
+# 1. Testing: both for thesis & to make sure algorithm is bug-free. What's the best approach? One part would be
 # profiling. Others - unit tests?
-# 4. [M-C2H2]+2H[2C13] parent is [M-C2H2]+2H[C13]? What about [M-C2H2]+H[C13]? At the moment code relies on former.
+# 2. [M-C2H2]+2H[2C13] parent is [M-C2H2]+2H[C13]? What about [M-C2H2]+H[C13]? At the moment code relies on former.
 
 import os, sys
 sys.path.insert(0, '../code/')
