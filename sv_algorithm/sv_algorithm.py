@@ -4,8 +4,23 @@
 # 2. [M-C2H2]+2H[2C13] parent is [M-C2H2]+2H[C13]? What about [M-C2H2]+H[C13]? At the moment code relies on former.
 
 import os, sys
-sys.path.insert(0, '../code/')
-from corr_cluster import Peak
+
+PROTON = 1.00727645199076
+
+
+class Peak(object):
+    def __init__(self,pid,mass,rt,intensity,signal=None,correct = False):
+        self.pid = pid
+        self.mass = mass
+        if correct:
+            self.mass += PROTON #Looks like Ronan's data has had a proton subtracted
+        self.rt = rt
+        self.intensity = intensity
+
+        self.signal = signal
+
+    def __str__(self):
+        return "({}, {})".format(self.mass,self.rt)
 
 
 class PeakGroup(object):
