@@ -7,13 +7,13 @@ import os, sys
 
 PROTON = 1.00727645199076
 
-
+# Copy paste from corr_cluster.py
 class Peak(object):
     def __init__(self,pid,mass,rt,intensity,signal=None,correct = False):
         self.pid = pid
         self.mass = mass
         if correct:
-            self.mass += PROTON #Looks like Ronan's data has had a proton subtracted
+            self.mass += PROTON
         self.rt = rt
         self.intensity = intensity
 
@@ -24,12 +24,25 @@ class Peak(object):
 
 
 class PeakGroup(object):
+    """
+    Class that holds peaks (within RT threshold of the most intense one) and transformations that were used to arrive
+    at molecular masses / possible peak masses. Only peaks within RT threshold that were judged to be very similar to
+    the peak mass that was derived from a molecular mass are added to the class (along with the transformation).
+    """
+
     def __init__(self):
         self.members = []   # Peak that fits the transformation, transformation itself and transformed mass
         self.vote = 0.0     # Total group vote
         self.M = 0.0        # Group mass
 
     def add_peak(self, peak, transformation):
+        """
+        Method to add peaks to the PeakGroup object. Note: each time a new peak is added, mass and vote is recalculated.
+        :param peak:            Peak object. Peak within RT threshold; similar to possible peak mass (derived from
+                                molecular mass).
+        :param transformation:  transformation object used to calculate molecular mass and potential peak mass.
+        """
+
         # Rather awkward way to check if the peak already exists in the group. If it does, and has a higher vote,
         # the lower one should be deleted. If it has a lower vote, there is no reason to add it to the group.
         for p, t, tm in self.members:
@@ -42,8 +55,11 @@ class PeakGroup(object):
         self.members.append((peak, transformation, transformation.transform(peak)))
         self.recalculate()
 
-    # Recalculates votes, intensity, mass. Used when members are added/removed from a group.
     def recalculate(self):
+        """
+        Recalculates group mass (total mass / total intensity) and total vote.
+        """
+
         total_intensity = 0.0   # Total intensity of all peaks in the group.
         self.M = 0.0            # Total mass of peaks in the group.
         self.vote = 0.0         # Total vote of all transformations in the group.
@@ -59,8 +75,11 @@ class PeakGroup(object):
             total_intensity += member[0].intensity      # total intensity += peak intensity
         self.M /= total_intensity
 
-    # For printing in command line. No other purpose, can be deleted later on to make the code tidier.
     def __str__(self):
+        """
+        Method to print out groups to the command line. Can be deleted to make the code tidier.
+        """
+
         representation = "\nTotal vote: {} Mass: {}".format(self.vote, self.M)
         for peak, transformation, transformed_mass in sorted(self.members, key=lambda x: x[1].vote, reverse=True):
             representation += "\n   {:.4f}, {:.4f}, {:.2e}, {} ({:.4f}, {:.4f})".format(peak.mass, peak.rt,
@@ -69,6 +88,11 @@ class PeakGroup(object):
 
 
 class IntensityClustering(object):
+    """
+    Main algorithm that deals with grouping peaks. See README.md for brief overview on how it is done. Alternatively,
+    following comments in the code may also give a good idea what the algorithm does.
+    """
+
     def __init__(self, peak_file, transformations, rt_thresh=3, tolerance=10):
         self.peaks = []                 # Peaks extracted from a file
         self.peak_file = peak_file      # Data file with M/RT/intensity
@@ -79,8 +103,11 @@ class IntensityClustering(object):
 
         self.load_peaks(peak_file)      # Initialize peaks from given file
 
-    # Produces a list of peaks from a given file. Numpy, etc. required because of corr_cluster.py code.
     def load_peaks(self, file_path):
+        """
+        Produces a list of peaks from a given file.
+        :param file_path: path to where the file with information on peaks lives.
+        """
         print ("\nCreating peaks from a file at: \n" + file_path + "...")
 
         if os.path.isfile(file_path):
@@ -178,9 +205,16 @@ class IntensityClustering(object):
         return groups
 
     """                                 HELPER FUNCTIONS                                    """
-    # Removes transformations whose parents are not in the group (orphans). Also applies to those that
-    # have a parent, but the parent itself is an orphan. In such a case, both transformations are deleted.
+
     def remove_orphans(self, group):
+        """
+        Removes transformations whose parents are not in the group (orphans). Also applies to those that have a parent,
+        but the parent itself is an orphan. In such a case, both transformations are deleted. If parents do exist,
+        however, nothing is changed.
+        :param group:   PeakGroup object which needs orphans removed or checked if there actually are any orphans.
+        :return:        PeakGroup object that has had it's orphans removed.
+        """
+
         finished = False
         while not finished:
             to_remove = []
@@ -200,8 +234,16 @@ class IntensityClustering(object):
                 group.recalculate()
         return group
 
-    # Finds the peaks that are [0-threshold] s higher than the target peak.
     def forward_pass(self, thresh_group, most_intense, index, rt_sorted):
+        """
+        Finds the peaks that are [0-threshold] s higher than the target peak.
+        :param thresh_group:    a list of peaks that were already to be found to be within threshold.
+        :param most_intense:    a peak that we compare other peaks against.
+        :param index:           an index which shows where to start the search.
+        :param rt_sorted:       a list through which we iterate.
+        :return:                a list of peaks within the threshold.
+        """
+
         while True:
             if index >= len(rt_sorted):
                 break
@@ -211,8 +253,16 @@ class IntensityClustering(object):
             index += 1
         return thresh_group
 
-    # Finds the peaks that are [0-threshold] s lower than the target peak
     def backward_pass(self, thresh_group, most_intense, index, rt_sorted):
+        """
+        Finds the peaks that are [0-threshold] s lower than the target peak
+        :param thresh_group:    a list of peaks that were already to be found to be within threshold.
+        :param most_intense:    a peak that we compare other peaks against.
+        :param index:           an index which shows where to start the search.
+        :param rt_sorted:       a list through which we iterate.
+        :return:                a list of peaks within the threshold.
+        """
+
         while True:
             if index < 0:
                 break
