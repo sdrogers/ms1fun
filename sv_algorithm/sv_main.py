@@ -1,8 +1,13 @@
+"""
+Code that launches the algorithm.
+"""
+
 import sys, os, time
 from sv_algorithm import IntensityClustering
 # import cProfile, pstats, StringIO
 sys.path.insert(0, '../code/')
 import transformation
+from sv_tests import singleton_test
 from helper_functions import hmdb_analysis
 
 # Profiling stuff
@@ -56,12 +61,16 @@ with open(output_path, 'w') as f:
 print ("\nOutput file has been prepared:\n{}".format(output_path))
 print ("Total groups found: " + str(len(groups)))
 
-counts = hmdb_analysis(groups, filename=output_file[:-4])
-
+# Analyse the output, whether it makes sense.
+# counts = hmdb_analysis(groups, filename=output_file[:-4])
 
 # Command line printing
-# for group in groups:
-#     print group
+for group in groups:
+    print group
+
+# Test specific parts of an algorithm.
+print("Singleton groups test. Every singleton group contains M+H: {}"
+        .format(singleton_test(groups)))
 
 # Profiling continued
 # pr.disable()
