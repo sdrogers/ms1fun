@@ -35,7 +35,7 @@ cluster = IntensityClustering(file_path, transformations, rt_thresh=2, tolerance
 # Taking most intense peak, figuring out the groups around it (within given RT window)
 print ("Processing...")
 start_time = time.clock()
-groups = cluster.heavylifting()
+groups = cluster.group_peaks()
 end_time = time.clock()
 print ("Data processing time: " + str(end_time-start_time))
 
@@ -63,10 +63,6 @@ print ("Total groups found: " + str(len(groups)))
 
 # Analyse the output, whether it makes sense.
 # counts = hmdb_analysis(groups, filename=output_file[:-4])
-
-# Command line printing
-for group in groups:
-    print group
 
 # Test specific parts of an algorithm.
 print("Singleton groups test. Every singleton group contains M+H: {}"

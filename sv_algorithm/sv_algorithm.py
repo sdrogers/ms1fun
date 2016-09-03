@@ -1,8 +1,3 @@
-# Questions:
-# 1. Testing: both for thesis & to make sure algorithm is bug-free. What's the best approach? One part would be
-# profiling. Others - unit tests?
-# 2. [M-C2H2]+2H[2C13] parent is [M-C2H2]+2H[C13]? What about [M-C2H2]+H[C13]? At the moment code relies on former.
-
 import os, sys
 
 PROTON = 1.00727645199076
@@ -129,7 +124,7 @@ class IntensityClustering(object):
         print ("\n{} peaks loaded!".format(str(len(self.peaks))))
 
     # Processes and groups the peaks around the most intense peaks.
-    def heavylifting(self):
+    def group_peaks(self):
         groups = []  # Peak groups that are explained by highest voted m (transformed molecular mass)
 
         # For testing. m/z: 221.0420, RT: 611.6010,Intensity: 9.84e+05, M+K (182.0789,0.6)
@@ -142,70 +137,70 @@ class IntensityClustering(object):
         # Main loop where grouping happens
         progress = 0  # To show progress for the user, but not spam constantly.
         while len(intensity_sorted) > 0:
-        	if progress % 100 == 0:
-        		print("Processing {} peak out of {}...".format(progress, len(self.peaks)))
-    		progress += 1
+            if progress % 100 == 0:
+                print("{} peaks left to process...".format(len(intensity_sorted)))
+            progress += 1
 
-    		most_intense = intensity_sorted[0]  # P:: Always the first one, as it's sorted in desc. order
+            most_intense = intensity_sorted[0]  # P:: Always the first one, as it's sorted in desc. order
 
             # Creates a set that will contain peaks that are within |n|s RT from most intense peak
-	        index = rt_sorted.index(most_intense)  # Finds most intense peak's index in rt_sorted list
-	        thresh_group = []  # R:: peaks within rt threshold
-	        thresh_group = self.forward_pass(thresh_group, most_intense, index, rt_sorted)  # Go right (higher)
-	        index -= 1  # Immutable, thus 'index' is not changed by the functions.
-	        thresh_group = self.backward_pass(thresh_group, most_intense, index, rt_sorted)  # Go left (lower)
+            index = rt_sorted.index(most_intense)  # Finds most intense peak's index in rt_sorted list
+            thresh_group = []  # R:: peaks within rt threshold
+            thresh_group = self.forward_pass(thresh_group, most_intense, index, rt_sorted)  # Go right (higher)
+            index -= 1  # Immutable, thus 'index' is not changed by the functions.
+            thresh_group = self.backward_pass(thresh_group, most_intense, index, rt_sorted)  # Go left (lower)
 
-	        # Finds possible molecular masses for the most intense peak by applying all transformations to the most
-	        # intense peak from the list. As it is the most intense (abundant) peak, we can assume it is mono-isotopic.
-	        # Thus, we do not need C13 and 2C13, which we can skip when determining what to add to the molecular masses.
-	        molecular_masses = []  # M:: list of molecular masses
-	        for transformation in self.transformations:
-	            if transformation.name[-4:-1] != 'C13':
-	                molecular_masses.append(transformation.transform(most_intense))
+            # Finds possible molecular masses for the most intense peak by applying all transformations to the most
+            # intense peak from the list. As it is the most intense (abundant) peak, we can assume it is mono-isotopic.
+            # Thus, we do not need C13 and 2C13, which we can skip when determining what to add to the molecular masses.
+            molecular_masses = []  # M:: list of molecular masses
+            for transformation in self.transformations:
+                if transformation.name[-4:-1] != 'C13':
+                    molecular_masses.append(transformation.transform(most_intense))
 
-	        highest_voted = PeakGroup()  # Highest voted group of peaks
+            highest_voted = PeakGroup()  # Highest voted group of peaks
 
-	        # 1. For each molecular mass, calculates all possible peak masses. Records it, and the transformation.
-	        # 2. For each derived mass, checks if similar mass is in a group created around the most intense peak.
-	        # 3. If it is, stores it in a group of peaks that are explained by the transformations on M.
-	        # 4. Removes transformations that are missing parents from a group.
-	        # 5. Assesses whether the group that was just created has a higher vote than previous highest voted group.
+            # 1. For each molecular mass, calculates all possible peak masses. Records it, and the transformation.
+            # 2. For each derived mass, checks if similar mass is in a group created around the most intense peak.
+            # 3. If it is, stores it in a group of peaks that are explained by the transformations on M.
+            # 4. Removes transformations that are missing parents from a group.
+            # 5. Assesses whether the group that was just created has a higher vote than previous highest voted group.
 
-	        # At least one of the masses must be in that group, as one of the reverse transformations will inevitably
-	        # arrive at the same mass most intense peak was before transforming it. Other peaks from rt_thresh group
-	        # might be in there as well. This means that the initial molecule was transformed in different way, and thus
-	        # has a different mass when measured. To record these molecules, create an object that holds total vote
-	        # (from transformations) and mass, in addition to information on the peak and transformation used on it to
-	        # arrive at the initial mass (or to calculate end mass from initial mass).
-	        for mass in molecular_masses:
-	            reverse_masses = []  # N:: reverse transformation on molecular masses. Stores mass + transformation
-	            # Performs reverse transformations on a mass. Gives possible masses for the peak. Includes C13/2C13.
-	            for transformation in self.transformations:
-	                peak_mass = transformation.reversetransform(mass)
-	                reverse_masses.append([peak_mass, transformation])
+            # At least one of the masses must be in that group, as one of the reverse transformations will inevitably
+            # arrive at the same mass most intense peak was before transforming it. Other peaks from rt_thresh group
+            # might be in there as well. This means that the initial molecule was transformed in different way, and thus
+            # has a different mass when measured. To record these molecules, create an object that holds total vote
+            # (from transformations) and mass, in addition to information on the peak and transformation used on it to
+            # arrive at the initial mass (or to calculate end mass from initial mass).
+            for mass in molecular_masses:
+                reverse_masses = []  # N:: reverse transformation on molecular masses. Stores mass + transformation
+                # Performs reverse transformations on a mass. Gives possible masses for the peak. Includes C13/2C13.
+                for transformation in self.transformations:
+                    peak_mass = transformation.reversetransform(mass)
+                    reverse_masses.append([peak_mass, transformation])
 
-	            # For each peak mass in reverse masses, checks if there is anything similar in rt_thresh group.
-	            peak_group = PeakGroup()
-	            for peak_mass, transformation in reverse_masses:
-	                for peak in thresh_group:
-	                    # 1000 000 * |(a-b)/a| <= tolerance
-	                    ppm = 1000000 * abs((peak.mass - peak_mass) / peak.mass)  # parts per million (ppm) difference
-	                    # If there is, adds it to the possible peak group, which will later be assessed on total vote.
-	                    if ppm <= self.tolerance:
-	                        peak_group.add_peak(peak, transformation)
-	            peak_group = self.remove_orphans(peak_group)
-	            # Only keeps the highest voted group out of all groups around various masses
-	            if peak_group.vote > highest_voted.vote:
-	                highest_voted = peak_group
+                # For each peak mass in reverse masses, checks if there is anything similar in rt_thresh group.
+                peak_group = PeakGroup()
+                for peak_mass, transformation in reverse_masses:
+                    for peak in thresh_group:
+                        # 1000 000 * |(a-b)/a| <= tolerance
+                        ppm = 1000000 * abs((peak.mass - peak_mass) / peak.mass)  # parts per million (ppm) difference
+                        # If there is, adds it to the possible peak group, which will later be assessed on total vote.
+                        if ppm <= self.tolerance:
+                            peak_group.add_peak(peak, transformation)
+                peak_group = self.remove_orphans(peak_group)
+                # Only keeps the highest voted group out of all groups around various masses
+                if peak_group.vote > highest_voted.vote:
+                    highest_voted = peak_group
 
-	        # Stores the group with the highest vote for the current peak.
-	        groups.append(highest_voted)
+            # Stores the group with the highest vote for the current peak.
+            groups.append(highest_voted)
 
-	        # Remove peaks that have been grouped (that are explained by m)
-	        grouped_peaks = [x[0] for x in highest_voted.members]  # List of peaks extracted from a tuple
-	        for peak in grouped_peaks:
-	            rt_sorted.remove(peak)
-	            intensity_sorted.remove(peak)
+            # Remove peaks that have been grouped (that are explained by m)
+            grouped_peaks = [x[0] for x in highest_voted.members]  # List of peaks extracted from a tuple
+            for peak in grouped_peaks:
+                rt_sorted.remove(peak)
+                intensity_sorted.remove(peak)
 
         return groups
 
@@ -291,4 +286,4 @@ class IntensityClustering(object):
         else:
             for peak in peak_group:
                 print("Peak ID: {}  Mass: {:.4f}  RT: {:.4f}  Int: {:.4f}").format(peak.pid, peak.mass, peak.rt,
-                                                                                    peak.intensity)
+                                                                                   peak.intensity)
